@@ -6,18 +6,24 @@ const bcrypt = require('bcryptjs')
 passport.use(
   new LocalStrategy((username, password, cb) => {
     // PSQL operation to find matching username & password
-    const {rows} = await pool.query('SELECT username, password FROM users WHERE username=($1) AND password=($2)', [username, password])
+    const {rows} = await pool.query('SELECT username, password FROM users WHERE username=($1) AND password=($2)', [username, password], (err, res) => {
+      if (err) { return cb(err) }
+    })
+    if (res.rows.length > 0) {
+      cb(null, {id: res.rows[0]})
+    } else {cb(null, false)}
   
 
-    // need to see what is in 'rows'
-  bcrypt.compare(password, rows['rows'].password, (err, res) => {
-            if (res) {
-                cb(null, username, {message: 'logged in successfully'})
-            } else {
-                cb(null, false, 'incorrect password')
-            }
-        })
-    })
+    
+    // bcrypt.compare(password, rows['rows'].password, (err, res) => {
+    //         if (res) {
+    //             cb(null, username, {message: 'logged in successfully'})
+    //         } else {
+    //             cb(null, false, 'incorrect password')
+    //         }
+    //     })
+    // })
+  })
 );
 
 // 'user' belongs to session, not db
