@@ -1,4 +1,4 @@
-// TODO: learn data scraping & test passport login; what does 'user' return in auth.js? MAKE PASSPORT LOGIN WORK
+// TODO: learn data scraping & test passport login
 
 const express = require("express");
 const http_errors = require("http-errors");
@@ -8,15 +8,17 @@ const session = require("express-session");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const path = require("path");
-const login = require("./routes/login");
 const passport = require("passport");
+
+const login = require("./routes/login");
+const signup = require("./routes/signup");
 
 var app = express();
 
 // For Production Deployment
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "client/build")));
-}
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static(path.join(__dirname, "client/build")));
+// }
 
 app.use(cors());
 app.use(express.json());
@@ -29,13 +31,15 @@ app.use(bodyParser.json());
 app.use(cookie_parser());
 
 /// -------- AUTHENTICATION -------- ///
-require("passport");
+
+require("./passport"); // MUST direct to the passport.js file NOT the dependency
 app.use(session({ secret: "secret", resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(login);
 
 /// -------- ROUTES -------- ///
+app.use(login);
+app.use(signup);
 
 // Catch all route for production
 app.get("/*", (req, res) => {
@@ -43,6 +47,7 @@ app.get("/*", (req, res) => {
 });
 
 /// -------- ERROR HANDLERS -------- ///
+
 app.use((req, res, next) => {
   next(createError(404));
 });
@@ -53,7 +58,7 @@ app.use((err, req, res, next) => {
 
   // render the error page
   res.status(err.status || 500);
-  res.json({ error: err });
+  res.json({ error: err.message });
 });
 
 module.exports = app;
