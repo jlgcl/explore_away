@@ -12,6 +12,7 @@ const passport = require("passport");
 
 const login = require("./routes/login");
 const signup = require("./routes/signup");
+const cityScrape = require("./scraper/city_scraper");
 
 var app = express();
 
@@ -40,6 +41,7 @@ app.use(passport.session());
 /// -------- ROUTES -------- ///
 app.use(login);
 app.use(signup);
+app.use(cityScrape);
 
 // Catch all route for production
 app.get("/*", (req, res) => {
