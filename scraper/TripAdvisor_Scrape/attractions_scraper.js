@@ -1,17 +1,28 @@
 const cheerio = require("cheerio");
 const express = require("express");
 router = express.Router();
-const pool = require("../db/index");
+const pool = require("../../db/index");
 const axios = require("axios");
+const fetch = require("node-fetch");
 const { text } = require("body-parser");
 
+// db query for city info
 const cityQuery = (name) => {
   return pool.query("SELECT name, state, TA_code FROM cities WHERE name=$1", [
     name,
   ]);
 };
 
-// Get top attractions of the city
+// fetch lat/lon coordinates of corresponding address from nominatim.openstreetmap
+const coordinateQuery = async (address) => {
+  const fetchData = await fetch(
+    "https://nominatim.openstreetmap.org/search?format=json&q=" + address
+  );
+  const jsonData = await fetchData.json();
+  return [jsonData[0].lat, jsonData[0].lon];
+};
+
+// get top attractions of the city
 router.get("/api/attractions/:cityname", async (req, res) => {
   const { rows } = await cityQuery(req.params.cityname);
   const cityName = rows[0]["name"];
@@ -26,7 +37,7 @@ router.get("/api/attractions/:cityname", async (req, res) => {
   const $ = cheerio.load(data);
 
   // obtain attraction item individually
-  var t = $("._255i5rcQ > h3")
+  var scrape = $("._255i5rcQ > h3")
     .contents()
     .map(function () {
       return this.type === "text" ? $(this).text() : "";
@@ -34,12 +45,22 @@ router.get("/api/attractions/:cityname", async (req, res) => {
     .get();
 
   // process data items to remove numbers & undefined data
-  t.map((text) => {
+  scrape.map((text) => {
     if (text.match(/[a-zA-Z]\w+/g)) fetchList.push(text);
   });
-  const resList = fetchList.slice(0, 10);
+  const addressList = fetchList.slice(0, 10);
 
-  res.json(resList);
+  const coordinates = [];
+
+  // fetch coordinates of the list of addresses/attractions
+  await Promise.all(
+    addressList.map(async (address) => {
+      let res = await coordinateQuery(address);
+      coordinates.push(res);
+    })
+  );
+
+  res.json({ addressList, coordinates });
 });
 
 module.exports = router;

@@ -1,4 +1,4 @@
-// TODO: learn data scraping & test passport login
+// TODO: work on TripAdvisor scraping & create a parent route method for attractions, restaurants, etc.
 
 const express = require("express");
 const http_errors = require("http-errors");
@@ -12,7 +12,7 @@ const passport = require("passport");
 
 const login = require("./routes/login");
 const signup = require("./routes/signup");
-const cityScrape = require("./scraper/city_scraper");
+//const cityScrape =
 
 var app = express();
 
@@ -41,7 +41,7 @@ app.use(passport.session());
 /// -------- ROUTES -------- ///
 app.use(login);
 app.use(signup);
-app.use(cityScrape);
+//app.use(cityScrape);
 
 // Catch all route for production
 app.get("/*", (req, res) => {
