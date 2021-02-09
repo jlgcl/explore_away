@@ -12,7 +12,7 @@ const passport = require("passport");
 
 const login = require("./routes/login");
 const signup = require("./routes/signup");
-//const cityScrape =
+const cityScrape = require("./scraper/TripAdvisor_Scrape/city_scraper");
 
 var app = express();
 
@@ -41,12 +41,12 @@ app.use(passport.session());
 /// -------- ROUTES -------- ///
 app.use(login);
 app.use(signup);
-//app.use(cityScrape);
+app.use(cityScrape);
 
 // Catch all route for production
-app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client/build/index.html"));
-});
+// app.get("/*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "client/build/index.html"));
+// });
 
 /// -------- ERROR HANDLERS -------- ///
 
