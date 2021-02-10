@@ -1,4 +1,4 @@
-// TODO: work on TripAdvisor scraping & create a parent route method for attractions, restaurants, etc.
+// TODO: test insta scraper & add # of TripAdvisor locations (i.e. 1 of 661 attractions in NYC; for each attraction)
 
 const express = require("express");
 const http_errors = require("http-errors");
@@ -12,7 +12,7 @@ const passport = require("passport");
 
 const login = require("./routes/login");
 const signup = require("./routes/signup");
-const cityScrape = require("./scraper/TripAdvisor_Scrape/city_scraper");
+const tripAdvisorScrape = require("./scraper/TripAdvisor_Scrape/TripAdvisor_scraper");
 
 var app = express();
 
@@ -41,7 +41,7 @@ app.use(passport.session());
 /// -------- ROUTES -------- ///
 app.use(login);
 app.use(signup);
-app.use(cityScrape);
+app.use(tripAdvisorScrape);
 
 // Catch all route for production
 // app.get("/*", (req, res) => {

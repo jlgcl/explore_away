@@ -1,8 +1,8 @@
 const express = require("express");
 router = express.Router();
-const pool = require("../../db/index");
-const fetch = require("node-fetch");
-const topListScraper = require("./top_list_scraper");
+const pool = require("../db/index");
+const topListScraper = require("./TripAdvisor_Scrape/top_list_scraper");
+const instagramScraper = require("../scraper/Instagram_Scrape/insta_scraper");
 
 // db query for city info
 const cityQuery = (name) => {
@@ -11,13 +11,13 @@ const cityQuery = (name) => {
   ]);
 };
 
-// get top attractions of the city
-router.get("/api/scrape/:cityname", async (req, res) => {
+router.get("/api/city/:cityname", async (req, res) => {
   const { rows } = await cityQuery(req.params.cityname);
   const cityName = rows[0]["name"];
   const stateName = rows[0]["state"];
   const cityCode = rows[0]["ta_code"];
 
+  /// TRIP ADVISOR ///
   const attractions = await topListScraper(
     "Attractions",
     cityName,
@@ -32,7 +32,10 @@ router.get("/api/scrape/:cityname", async (req, res) => {
   );
   const hotels = await topListScraper("Hotels", cityName, stateName, cityCode);
 
-  res.json({ attractions, restaurants, hotels });
+  /// INSTAGRAM ///
+  instagramScraper(attractions, restaurants, hotels);
+
+  // res.json({ attractions, restaurants, hotels });
 });
 
 module.exports = router;
