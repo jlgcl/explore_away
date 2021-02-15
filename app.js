@@ -12,7 +12,7 @@ const passport = require("passport");
 
 const login = require("./routes/login");
 const signup = require("./routes/signup");
-const tripAdvisorScrape = require("./scraper/TripAdvisor_Scrape/TripAdvisor_scraper");
+const cityScraper = require("./scraper/city_scraper");
 
 var app = express();
 
@@ -41,7 +41,7 @@ app.use(passport.session());
 /// -------- ROUTES -------- ///
 app.use(login);
 app.use(signup);
-app.use(tripAdvisorScrape);
+app.use(cityScraper);
 
 // Catch all route for production
 // app.get("/*", (req, res) => {
