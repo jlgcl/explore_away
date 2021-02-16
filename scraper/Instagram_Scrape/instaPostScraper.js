@@ -1,41 +1,37 @@
-// PROGRESS: work with Puppeteer to obtain Instagram img attr & src
+// TODO: test scraper
 
-const puppeteer = require("puppeteer");
+const axios = require("axios");
 
 const instaPostScraper = async (addresses) => {
   let arr = [];
-  const address = addresses["addressList"][0];
 
-  //addresses["addressList"].map(async (address) => {
-  const browser = await puppeteer.launch({ headless: false });
+  //const address = addresses["addressList"][0];
 
-  const addressFiltered = address.replace(/[^a-zA-Z0-9]/g, "");
-  const url = `https://instagram.com/explore/tags/${addressFiltered}`;
-  const page = await browser.newPage();
-  await page.goto("https://instagram.com/accounts/login/");
-  await page.waitForSelector('input[name="username"]');
-  await page.type('input[name="username"]', "username");
-  await page.type('input[name="password"]', "password");
-  await page.click('button[type="submit"]');
-  await page.waitForNavigation({
-    waitUntil: "networkidle0",
-  });
-  await page.goto(url);
+  addresses["addressList"].map(async (address) => {
+    const addressFiltered = address.replace(/[^a-zA-Z0-9]/g, "");
+    const url = `https://instagram.com/explore/tags/${addressFiltered}`;
 
-  //const result = await page.$$('div[class="KL4Bh"] > img');
-
-  await page.waitForSelector(".KL4Bh img");
-
-  const result = await page.evaluate(() => {
-    return document.querySelectorAll(".KL4Bh img");
+    const response = await axios.get(url);
+    arr.push(instaQlScrape(response));
   });
 
-  console.log(result);
-  //});
+  return arr;
+};
 
-  //console.log(arr);
-  //return arr;
-  //browser.close();
+const instaQlScrape = (response) => {
+  let edges = response.data.graphql.hashtag.edge_hashtag_to_top_posts.edges;
+
+  let posts = edges.map((edge) => {
+    if (edge)
+      return {
+        imgSrc: edge.display_url,
+        timeStamp: edge.taken_at_timestamp,
+        caption: edge.accessibility_caption,
+      };
+    else return {};
+  });
+
+  return posts;
 };
 
 module.exports = instaPostScraper;
