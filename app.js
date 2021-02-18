@@ -1,4 +1,5 @@
 // TODO: test insta scraper & add # of TripAdvisor locations (i.e. 1 of 661 attractions in NYC; for each attraction)
+// TODO: separate insta scraper from tripadvisor scraper - send addresses from client, not from tripadvisor response.
 
 const express = require("express");
 const http_errors = require("http-errors");

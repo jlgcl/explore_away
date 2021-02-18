@@ -18,24 +18,25 @@ router.get("/api/city/:cityname", async (req, res) => {
   const cityCode = rows[0]["ta_code"];
 
   /// TRIP ADVISOR /// TEMPORARILY DISABLE ATTRACTIONS & HOTELS FOR TESTING
-  // const attractions = await topListScraper(
-  //   "Attractions",
-  //   cityName,
-  //   stateName,
-  //   cityCode
-  // );
+  const attractions = await topListScraper(
+    "Attractions",
+    cityName,
+    stateName,
+    cityCode
+  );
   const restaurants = await topListScraper(
     "Restaurants",
     cityName,
     stateName,
     cityCode
   );
-  //const hotels = await topListScraper("Hotels", cityName, stateName, cityCode);
+  const hotels = await topListScraper("Hotels", cityName, stateName, cityCode);
 
   /// INSTAGRAM ///
-  instagramScraper(restaurants);
+  const instaPosts = await instagramScraper(attractions, restaurants, hotels);
 
-  // res.json({ attractions, restaurants, hotels });
+  //res.json({ attractions, restaurants, hotels });
+  res.json({ instaPosts });
 });
 
 module.exports = router;
