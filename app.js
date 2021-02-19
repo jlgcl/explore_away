@@ -1,5 +1,4 @@
-// TODO: test insta scraper & add # of TripAdvisor locations (i.e. 1 of 661 attractions in NYC; for each attraction)
-// TODO: separate insta scraper from tripadvisor scraper - send addresses from client, not from tripadvisor response.
+// TODO: work on snap scraper & map
 
 const express = require("express");
 const http_errors = require("http-errors");
@@ -13,7 +12,7 @@ const passport = require("passport");
 
 const login = require("./routes/login");
 const signup = require("./routes/signup");
-const cityScraper = require("./scraper/city_scraper");
+const scrapeController = require("./scraper/scrapeController");
 
 var app = express();
 
@@ -42,7 +41,7 @@ app.use(passport.session());
 /// -------- ROUTES -------- ///
 app.use(login);
 app.use(signup);
-app.use(cityScraper);
+app.use(scrapeController);
 
 // Catch all route for production
 // app.get("/*", (req, res) => {

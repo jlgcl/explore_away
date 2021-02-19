@@ -1,11 +1,9 @@
 const instaPostScraper = require("./instaPostScraper");
 
-const instagramScraper = async (attractions, restaurants, hotels) => {
-  let attractionsPosts = await instaPostScraper(attractions);
-  let restaurantsPosts = await instaPostScraper(restaurants);
-  let hotelsPosts = await instaPostScraper(hotels);
+const instaScraper = async (address) => {
+  let instaPosts = await instaPostScraper(address);
 
-  return { attractionsPosts, restaurantsPosts, hotelsPosts };
+  return { instaPosts };
 };
 
-module.exports = instagramScraper;
+module.exports = instaScraper;
