@@ -1,4 +1,4 @@
-// TODO: work on YT scraper & map
+// TODO: integrate Jest modules for scrapers then move onto frontend
 
 const express = require("express");
 const http_errors = require("http-errors");
