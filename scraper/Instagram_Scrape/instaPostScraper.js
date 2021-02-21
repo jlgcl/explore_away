@@ -46,7 +46,9 @@ const instaPostScraper = async (address) => {
   arr.push(instaQlScrape(res));
 
   await browser.close();
-  return arr;
+
+  if (arr.length > 0) return arr;
+  else return "";
 };
 
 module.exports = instaPostScraper;

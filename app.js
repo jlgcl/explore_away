@@ -1,4 +1,4 @@
-// TODO: work on snap scraper & map
+// TODO: work on YT scraper & map
 
 const express = require("express");
 const http_errors = require("http-errors");
