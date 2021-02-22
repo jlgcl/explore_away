@@ -1,4 +1,5 @@
 const puppeteer = require("puppeteer");
+require("dotenv").config();
 
 const instaQlScrape = (res) => {
   let edges = res.graphql.hashtag.edge_hashtag_to_top_posts.edges;
@@ -32,8 +33,8 @@ const instaPostScraper = async (address) => {
     waitUntil: "networkidle2",
   });
   await page.waitForSelector('input[name="username"]'); // wait for the username input field to load
-  await page.type('input[name="username"]', "USERNAME");
-  await page.type('input[name="password"]', "PASSWORD");
+  await page.type('input[name="username"]', process.env.IG_USER);
+  await page.type('input[name="password"]', process.env.IG_PASSWORD);
   await page.click('button[type="submit"]');
   await page.waitForNavigation({ waitUntil: "load" }); // wait for full page load
 

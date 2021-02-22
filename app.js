@@ -1,4 +1,4 @@
-// TODO: integrate Jest modules for scrapers then move onto frontend
+// TODO: add cities & TA codes to PSQL || work on front-end
 
 const express = require("express");
 const http_errors = require("http-errors");
