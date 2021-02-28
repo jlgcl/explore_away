@@ -9,6 +9,7 @@ const Sidebar = () => {
       <a href="/#">Map</a>
       <a href="/#">About</a>
       <a href="/#">Contact</a>
+      <a href="/#">Sign In</a>
     </div>
   );
 };
