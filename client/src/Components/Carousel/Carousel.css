@@ -1,0 +1,24 @@
+.Carousel {
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  flex-direction: row;
+}
+
+.Carousel_Pic {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  margin-left: -30px;
+  margin-right: -30px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: -1;
+}
+
+.Carousel_Left,
+.Carousel_Right {
+  z-index: 1;
+  width: 30px;
+}
