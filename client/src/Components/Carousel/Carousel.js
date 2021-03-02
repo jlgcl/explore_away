@@ -26,23 +26,27 @@ const Carousel = () => {
 
   return (
     <div className="Carousel">
+      <div className="Main_Logo"></div>
+      <div className="Carousel_Cover"></div>
       <div
         className="Carousel_Pic"
         style={{
           backgroundImage: `url(${images[sliderNum]})`,
         }}
       ></div>
-      <div
-        className="Carousel_Left"
-        onClick={() => setSliderNum(sliderNum - 1)}
-      >
-        --
-      </div>
-      <div
-        className="Carousel_Right"
-        onClick={() => setSliderNum(sliderNum + 1)}
-      >
-        --
+      <div className="Carousel_Arrows">
+        <div
+          className="Carousel_Left"
+          onClick={() => setSliderNum(sliderNum - 1)}
+        >
+          ❮
+        </div>
+        <div
+          className="Carousel_Right"
+          onClick={() => setSliderNum(sliderNum + 1)}
+        >
+          ❯
+        </div>
       </div>
     </div>
   );

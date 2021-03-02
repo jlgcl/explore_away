@@ -1,0 +1,23 @@
+.Home {
+  display: block;
+  width: 100%;
+}
+
+.Home_Search,
+.Home_Travel_Plan,
+.Home_Itinerary {
+  height: 400px;
+  border: 1px solid;
+  display: flex;
+  justify-content: row;
+  position: relative;
+}
+
+.Home_Picture {
+  width: 30%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 1px solid;
+}
