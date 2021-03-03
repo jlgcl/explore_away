@@ -1,3 +1,21 @@
+@font-face {
+  font-family: Pacifico;
+  src: url("../Fonts/Pacifico-Regular.ttf");
+}
+@font-face {
+  font-family: Lobster;
+  src: url("../Fonts/Lobster-Regular.ttf");
+}
+@font-face {
+  font-family: Architect;
+  src: url("../Fonts/ArchitectsDaughter-Regular.ttf");
+}
+
+@font-face {
+  font-family: Raleway;
+  src: url("../Fonts/Raleway-Bold.ttf");
+}
+
 .Home {
   display: block;
   width: 100%;
@@ -6,18 +24,99 @@
 .Home_Search,
 .Home_Travel_Plan,
 .Home_Itinerary {
-  height: 400px;
-  border: 1px solid;
+  height: 500px;
   display: flex;
   justify-content: row;
   position: relative;
 }
 
-.Home_Picture {
-  width: 30%;
+.Home_Search .Home_Frame,
+.Home_Itinerary .Home_Frame {
+  width: 50%;
   height: 100%;
+  position: absolute;
+  transform: skewX(10deg);
+  overflow: hidden;
+  left: 0;
+}
+
+.Home_Travel_Plan .Home_Frame {
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  transform: skewX(-10deg);
+  overflow: hidden;
+  left: 46.5vw;
+}
+
+.Home_Picture {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  border: 1px solid;
+  width: 120%;
+  height: 100%;
+  transform-origin: top;
+  transform: skewX(-10deg);
+  z-index: -1;
+}
+
+.Home_Travel_Plan .Home_Picture {
+  transform-origin: bottom;
+  transform: skewX(10deg);
+}
+
+.Home_Search .Home_Frame,
+.Home_Itinerary .Home_Frame {
+  left: 50px;
+}
+
+.Home_Search .Home_Header,
+.Home_Itinerary .Home_Header {
+  position: absolute;
+  font-size: 50px;
+  left: 52%;
+  top: 80px;
+  z-index: 1;
+}
+
+.Home_Travel_Plan .Home_Header {
+  position: absolute;
+  font-size: 50px;
+  left: 25%;
+  top: 80px;
+  z-index: 1;
+}
+
+.Home_Search .Home_Header {
+  font-family: Pacifico;
+  color: rgb(71, 110, 219);
+}
+
+.Home_Itinerary .Home_Header {
+  font-family: Architect;
+  color: rgb(24, 23, 10);
+}
+
+.Home_Travel_Plan .Home_Header {
+  font-family: Lobster;
+  color: rgb(255, 57, 57);
+}
+
+.Home_Subsection {
+  position: absolute;
+  z-index: 1;
+  font-family: Raleway;
+  font-size: 20px;
+}
+
+.Home_Search .Home_Subsection,
+.Home_Itinerary .Home_Subsection {
+  left: 60%;
+  top: 45%;
+}
+
+.Home_Travel_Plan .Home_Subsection {
+  width: 40%;
+  left: 2%;
+  top: 45%;
 }
