@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Aos from "aos";
 import "aos/dist/aos.css";
-import "./Home.css";
-import itinerary from "../Assets/itinerary.png";
-import travel_search from "../Assets/travel_search.jpeg";
-import travel_plan from "../Assets/travel_plan.jpg";
+import "./home_main.css";
+import itinerary from "../../Assets/itinerary.png";
+import travel_search from "../../Assets/travel_search.jpeg";
+import travel_plan from "../../Assets/travel_plan.jpg";
 
-const Home = () => {
+const HomeMain = () => {
   useEffect(() => {
     Aos.init({ duration: 2000 });
   }, []);
 
   return (
-    <div className="Home">
+    <div className="Home_Main">
       <div data-aos="fade-right" className="Home_Search">
         <div className="Home_Frame">
           <div
@@ -59,4 +59,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomeMain;
