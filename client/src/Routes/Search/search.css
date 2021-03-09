@@ -10,6 +10,15 @@
   width: 25vw;
   z-index: 1;
   background-color: white;
+  box-shadow: 10px 10px 7px -9px rgba(0, 0, 0, 0.75);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Searcher_Main {
+  width: 100%;
+  top: 100%;
 }
 
 .ToggleSearchBar {
@@ -24,4 +33,5 @@
   top: 15%;
   left: 25vw;
   z-index: 1;
+  box-shadow: 10px 10px 7px -9px rgba(0, 0, 0, 0.75);
 }

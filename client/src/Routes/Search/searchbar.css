@@ -1,0 +1,39 @@
+.SearchBar {
+  width: 100%;
+}
+
+.SearchBar_Form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.Search_Input {
+  width: 75%;
+  height: 35px;
+  margin-top: 15%;
+  margin-left: 3%;
+  border: 0.1px solid rgb(240, 236, 236);
+  border-radius: 5px;
+  box-shadow: 7px 7px 7px -9px rgba(0, 0, 0, 0.75);
+}
+
+.Search_Input:focus {
+  outline: none;
+  border: 0.1px solid rgb(156, 117, 248);
+}
+
+.Search_Submit {
+  border: 1px solid;
+  margin-top: 15%;
+  width: 15%;
+  height: 40px;
+  border: 0.1px solid rgb(240, 236, 236);
+  border-radius: 5px;
+  box-shadow: 7px 7px 7px -9px rgba(0, 0, 0, 0.75);
+  background: white;
+}

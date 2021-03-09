@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import SearchBar from "./searchbar";
 
 const Searcher = () => {
   const [showSearch, setShowSearch] = useState(true);
@@ -24,8 +25,8 @@ const Searcher = () => {
   };
 
   return (
-    <div>
-      <div className="SearchBar">Test</div>
+    <div className="Searcher_Main">
+      <SearchBar />
       <div className="ToggleSearchBar" onClick={handleToggle}>
         {toggleArrow}
       </div>
