@@ -1,5 +1,6 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+
 import Navbar from "./Components/Navbar/Navbar";
 import Home from "./Routes/Home/home";
 import Search from "./Routes/Search/search";
