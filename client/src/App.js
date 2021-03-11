@@ -1,5 +1,7 @@
+// TODO: create results component w/ SearchMap change location feature. Search matcher
+
 import "./App.css";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Navbar from "./Components/Navbar/Navbar";
 import Home from "./Routes/Home/home";
