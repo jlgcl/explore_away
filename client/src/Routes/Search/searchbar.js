@@ -1,3 +1,5 @@
+// STATUS: lower case filter - drop down list & autocorrect cases upon submit;
+
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import "./searchbar.css";

@@ -18,4 +18,4 @@ export const { searchSubmitted } = searchSlice.actions;
 
 export default searchSlice.reducer;
 
-export const selectSearch = (state) => state[0];
+export const selectSearch = (state) => state.search[0];

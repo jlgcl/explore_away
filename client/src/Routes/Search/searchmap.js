@@ -1,14 +1,16 @@
-// STATUS: update map based on search input submit
+// STATUS: loading while fetching
 
 import React, { useState, useEffect } from "react";
 import "./searchmap.css";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { useSelector } from "react-redux";
+import { ChangeView } from "./ChangeView";
+import { POI } from "./poi";
 
 import { selectSearch } from "../Search/searchSlice";
 
 const SearchMap = () => {
-  const [coordinate, setCoordinate] = useState([51.505, -0.09]);
+  const [coordinate, setCoordinate] = useState([51.5074, -0.1278]);
 
   const searchInput = useSelector(selectSearch);
 
@@ -28,21 +30,16 @@ const SearchMap = () => {
     fetchCityCoordinate();
   }, [searchInput]);
 
-  console.log(searchInput);
-
   // map of Markers based on attractions list
   return (
     <div className="SearchMap_Main">
       <MapContainer center={coordinate} zoom={13} scrollWheelZoom={true}>
+        <ChangeView center={coordinate} zoom={13} />
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={coordinate}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
-        </Marker>
+        <POI coordinate={coordinate} />
       </MapContainer>
     </div>
   );
