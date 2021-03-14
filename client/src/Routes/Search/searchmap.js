@@ -1,8 +1,8 @@
-// STATUS: loading while fetching
+// STATUS: loading while fetching: initial load required upon page load
 
 import React, { useState, useEffect } from "react";
 import "./searchmap.css";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer } from "react-leaflet";
 import { useSelector } from "react-redux";
 import { ChangeView } from "./ChangeView";
 import { POI } from "./poi";
@@ -10,13 +10,14 @@ import { POI } from "./poi";
 import { selectSearch } from "../Search/searchSlice";
 
 const SearchMap = () => {
-  const [coordinate, setCoordinate] = useState([51.5074, -0.1278]);
+  const [coordinate, setCoordinate] = useState([51.5, -0.12]);
+  const [searchInput, setSearchInput] = useState("London");
 
-  const searchInput = useSelector(selectSearch);
+  const searchInputState = useSelector(selectSearch);
 
   const fetchCityCoordinate = async () => {
     try {
-      let fetchReq = await fetch(`/api/tripadvisor/${searchInput}`, {
+      let fetchReq = await fetch(`/tripadvisor/${searchInput}`, {
         method: "GET",
       });
       let fetchJson = await fetchReq.json();
@@ -27,7 +28,11 @@ const SearchMap = () => {
   };
 
   useEffect(() => {
-    fetchCityCoordinate();
+    if (searchInputState !== undefined) setSearchInput(searchInputState);
+  }, [searchInputState]);
+
+  useEffect(() => {
+    if (searchInput !== undefined) fetchCityCoordinate();
   }, [searchInput]);
 
   // map of Markers based on attractions list

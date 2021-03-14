@@ -11,6 +11,7 @@ const passport = require("passport");
 const login = require("./routes/login");
 const signup = require("./routes/signup");
 const scrapeController = require("./scraper/scrapeController");
+const cityList = require("./routes/cityList");
 
 var app = express();
 
@@ -40,6 +41,7 @@ app.use(passport.session());
 app.use(login);
 app.use(signup);
 app.use(scrapeController);
+app.use(cityList);
 
 // Catch all route for production
 // app.get("/*", (req, res) => {
