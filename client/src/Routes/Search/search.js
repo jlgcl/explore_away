@@ -1,6 +1,6 @@
 import React from "react";
 import Searcher from "./searcher";
-import SearchMap from "./searchmap";
+import SearchMap from "./SearchMap/searchmap";
 import "./search.css";
 
 const Search = () => {

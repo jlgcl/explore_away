@@ -47,6 +47,15 @@
   flex-direction: column;
 }
 
+.DropDown li {
+  list-style-type: none;
+  padding: 5px;
+}
+
+.DropDown li:hover {
+  background-color: rgb(61, 226, 255);
+}
+
 .Search_Submit {
   border: 1px solid;
   margin-top: 15%;

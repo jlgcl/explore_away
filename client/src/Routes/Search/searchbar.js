@@ -3,11 +3,12 @@ import { useDispatch } from "react-redux";
 import "./searchbar.css";
 
 import { searchSubmitted } from "./searchSlice";
-import { DropDown } from "./dropDown";
+import { DropDown } from "./DropDown/dropDown";
 
 const SearchBar = () => {
   const [input, setInput] = useState("");
   const [cities, setCities] = useState([]);
+  const [selectionInput, setSelectionInput] = useState("");
 
   const dispatch = useDispatch();
 
@@ -16,7 +17,9 @@ const SearchBar = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (input) dispatch(searchSubmitted(input));
+    // dispatch the submitted input only if the input matches one of the fetched cities
+    if (cities.find((city) => city === selectionInput))
+      dispatch(searchSubmitted(selectionInput));
 
     setInput("");
   };
@@ -35,6 +38,11 @@ const SearchBar = () => {
     fetchCities();
   }, []);
 
+  // change input field value to the dropdown selection
+  useEffect(() => {
+    document.querySelector(".Search_Input").value = selectionInput;
+  }, [selectionInput]);
+
   return (
     <div className="SearchBar">
       <form className="SearchBar_Form">
@@ -45,7 +53,11 @@ const SearchBar = () => {
             type="text"
             onChange={onInputChange}
           ></input>
-          <DropDown cities={cities} input={input} />
+          <DropDown
+            cities={cities}
+            input={input}
+            setSelectionInput={setSelectionInput}
+          />
         </div>
         <input
           type="submit"

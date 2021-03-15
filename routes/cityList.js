@@ -4,8 +4,11 @@ const pool = require("../db/index");
 
 router.get("/api/cityList", async (req, res) => {
   let { rows } = await pool.query("SELECT city FROM cities");
+  let cityList = [];
 
-  res.json(rows);
+  rows.forEach((city) => cityList.push(city["city"]));
+
+  res.json(cityList);
 });
 
 module.exports = router;

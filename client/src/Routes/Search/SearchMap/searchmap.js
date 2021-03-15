@@ -7,11 +7,12 @@ import { useSelector } from "react-redux";
 import { ChangeView } from "./ChangeView";
 import { POI } from "./poi";
 
-import { selectSearch } from "../Search/searchSlice";
+import { selectSearch } from "../searchSlice";
 
 const SearchMap = () => {
   const [coordinate, setCoordinate] = useState([51.5, -0.12]);
   const [searchInput, setSearchInput] = useState("London");
+  const [addresses, setAddresses] = useState(null);
 
   const searchInputState = useSelector(selectSearch);
 
@@ -22,6 +23,7 @@ const SearchMap = () => {
       });
       let fetchJson = await fetchReq.json();
       setCoordinate(fetchJson["coordinate"]);
+      setAddresses(fetchJson);
     } catch (err) {
       console.log(err);
     }
@@ -35,6 +37,8 @@ const SearchMap = () => {
     if (searchInput !== undefined) fetchCityCoordinate();
   }, [searchInput]);
 
+  console.log(addresses);
+
   // map of Markers based on attractions list
   return (
     <div className="SearchMap_Main">
@@ -44,7 +48,7 @@ const SearchMap = () => {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <POI coordinate={coordinate} />
+        <POI coordinate={coordinate} addresses={addresses} />
       </MapContainer>
     </div>
   );
