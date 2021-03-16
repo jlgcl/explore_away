@@ -37,8 +37,6 @@ const SearchMap = () => {
     if (searchInput !== undefined) fetchCityCoordinate();
   }, [searchInput]);
 
-  console.log(addresses);
-
   // map of Markers based on attractions list
   return (
     <div className="SearchMap_Main">

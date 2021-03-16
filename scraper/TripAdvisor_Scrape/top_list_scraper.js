@@ -48,7 +48,8 @@ const topListScraper = async (category, cityName, stateName, cityCode) => {
     addressList.map(async (address) => {
       let res = await coordinateQuery(address);
       if (res !== null) {
-        coordinates.push(res);
+        // push address name & parsed coordinate floats
+        coordinates.push([address, res.map((e) => parseFloat(e))]);
       } else {
         // filter out null coordinate results
         addressList = addressList
