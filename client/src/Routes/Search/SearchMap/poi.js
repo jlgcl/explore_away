@@ -4,7 +4,7 @@ import { Marker, Popup } from "react-leaflet";
 import { markerIcon } from "./icon";
 
 // Map over the list of attractions and show through popup; accept as props: coordinate, attraction list
-export const POI = ({ coordinate, addresses }) => {
+export const POI = ({ addresses }) => {
   const [attractions, setAttractions] = useState([
     ["London Center", [51.50558625, -0.090487028540277]],
   ]);

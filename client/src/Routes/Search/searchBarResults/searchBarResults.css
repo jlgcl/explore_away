@@ -1,0 +1,24 @@
+.searchBarResults {
+    margin-top: 25px;
+    background-color: rgb(245, 255, 255);
+    border: 1px solid;
+    height: 82vh;
+    display: block;
+    overflow-y: scroll;
+}
+
+.searchBarResults .category {
+    border: 1px solid;
+}
+
+.searchBarResults .category .header {
+    border: 1px solid;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchBarResults .category .addressList {
+    display: block;
+}

@@ -1,12 +1,15 @@
-// STATUS: loading while fetching: initial load required upon page load
-
 import React, { useState, useEffect } from "react";
 import "./searchmap.css";
 import { MapContainer, TileLayer } from "react-leaflet";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { ChangeView } from "./ChangeView";
 import { POI } from "./poi";
 
+import {
+  fetchedAttractions,
+  fetchedRestaurants,
+  fetchedHotels,
+} from "./addressSlice";
 import { selectSearch } from "../searchSlice";
 
 const SearchMap = () => {
@@ -15,6 +18,7 @@ const SearchMap = () => {
   const [addresses, setAddresses] = useState(null);
 
   const searchInputState = useSelector(selectSearch);
+  const dispatch = useDispatch();
 
   const fetchCityCoordinate = async () => {
     try {
@@ -24,6 +28,10 @@ const SearchMap = () => {
       let fetchJson = await fetchReq.json();
       setCoordinate(fetchJson["coordinate"]);
       setAddresses(fetchJson);
+      // dispatch all the fetched addresses to Redux store
+      dispatch(fetchedAttractions(fetchJson["attractions"]["addressList"]));
+      dispatch(fetchedRestaurants(fetchJson["restaurants"]["addressList"]));
+      dispatch(fetchedHotels(fetchJson["hotels"]["addressList"]));
     } catch (err) {
       console.log(err);
     }

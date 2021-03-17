@@ -4,6 +4,7 @@ import "./searchbar.css";
 
 import { searchSubmitted } from "./searchSlice";
 import { DropDown } from "./DropDown/dropDown";
+import SearchBarResults from "./searchBarResults/searchBarResults";
 
 const SearchBar = () => {
   const [input, setInput] = useState("");
@@ -66,6 +67,7 @@ const SearchBar = () => {
           onClick={onSubmit}
         ></input>
       </form>
+      <SearchBarResults />
     </div>
   );
 };
