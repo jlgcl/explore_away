@@ -21,6 +21,8 @@ const SearchBar = () => {
     // dispatch the submitted input only if the input matches one of the fetched cities
     if (cities.find((city) => city === selectionInput))
       dispatch(searchSubmitted(selectionInput));
+    else if (cities.find((city) => city === input))
+      dispatch(searchSubmitted(input));
 
     setInput("");
   };

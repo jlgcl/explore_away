@@ -1,24 +1,63 @@
-.searchBarResults {
-    margin-top: 25px;
-    background-color: rgb(245, 255, 255);
-    border: 1px solid;
-    height: 82vh;
-    display: block;
-    overflow-y: scroll;
+@font-face {
+  font-family: balsamiq;
+  src: url("../../../Fonts/BalsamiqSans-Regular.ttf");
 }
 
-.searchBarResults .category {
-    border: 1px solid;
+::-webkit-scrollbar {
+  width: 10px;
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(209, 208, 208);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(161, 161, 161);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background: #f1f1f1;
+}
+
+.searchBarResults {
+  margin-top: 25px;
+  background-color: rgb(245, 255, 255);
+  height: 82vh;
+  display: block;
+  overflow-y: scroll;
+  z-index: -1;
 }
 
 .searchBarResults .category .header {
-    border: 1px solid;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  border: 0.2px solid rgb(228, 227, 227);
+  height: 40px;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  box-shadow: 2px 1px 5px 1px rgba(0, 0, 0, 0.5);
+  font-family: lobster;
 }
 
-.searchBarResults .category .addressList {
-    display: block;
+.searchBarResults .category .address_list {
+  display: block;
+  overflow-y: hidden;
+  transition: all 1s ease-in-out;
+  transition-timing-function: cubic-bezier(0.5, 1, 0.5, 1);
+  max-height: 500px;
+}
+
+.address_attractions,
+.address_restaurants,
+.address_hotels {
+  padding: 6px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-family: balsamiq;
 }
