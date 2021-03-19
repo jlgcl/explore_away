@@ -16,4 +16,4 @@ export const { addressSelected } = socialMediaSlice.actions;
 
 export default socialMediaSlice.reducer;
 
-export const selectedAddress = (state) => state.selectedAddress;
+export const addressName = (state) => state.socialMedia[0];
