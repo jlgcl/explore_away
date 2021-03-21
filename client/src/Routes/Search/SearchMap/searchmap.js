@@ -11,7 +11,7 @@ import {
   fetchedHotels,
 } from "./addressSlice";
 import { selectSearch } from "../searchSlice";
-import { addressName } from "../SocialMedia/socialMediaSlice";
+import { addressName } from "../searchBarResults/socialMediaSlice";
 
 const SearchMap = () => {
   const [coordinate, setCoordinate] = useState([51.5, -0.12]);
@@ -33,6 +33,7 @@ const SearchMap = () => {
       });
       let fetchJson = await fetchReq.json();
       setCoordinate(fetchJson["coordinate"]);
+      setCenterPosition(fetchJson["coordinate"]);
       setAddresses(fetchJson);
       // dispatch all the fetched addresses & coordinates to Redux store
       dispatch(fetchedAttractions(fetchJson["attractions"]["addressList"]));
@@ -55,8 +56,6 @@ const SearchMap = () => {
     if (searchInput !== undefined) fetchCityCoordinate();
   }, [searchInput]);
 
-  // TODO: need to update to coordinate, not address name
-
   useEffect(() => {
     if (centerAddress !== undefined) {
       let attractionsFind = attractionsCoordinates.filter(
@@ -68,7 +67,6 @@ const SearchMap = () => {
       let hotelsFind = hotelsCoordinates.filter(
         (address) => address[0] === centerAddress
       );
-      console.log(attractionsFind[0], restaurantsFind[0], hotelsFind[0]);
       if (attractionsFind[0] !== undefined)
         setCenterPosition(attractionsFind[0][1]);
       else if (restaurantsFind[0] !== undefined)

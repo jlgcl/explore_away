@@ -1,0 +1,37 @@
+.insta_pic {
+  opacity: 1;
+  height: 100%;
+  width: 100%;
+  z-index: 6;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 2s;
+}
+
+.arrows {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.arrows .left {
+  position: absolute;
+  left: 20px;
+  top: 45%;
+  color: white;
+  font-size: 30px;
+  z-index: 7;
+}
+
+.arrows .right {
+  position: absolute;
+  right: 20px;
+  top: 45%;
+  color: white;
+  font-size: 30px;
+  z-index: 7;
+}

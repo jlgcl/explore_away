@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import "./searchBarResults.css";
 
 import { selectAddresses } from "../SearchMap/addressSlice";
-import { addressSelected } from "../SocialMedia/socialMediaSlice";
+import { addressSelected } from "./socialMediaSlice";
 
 const SearchBarResults = () => {
   let addresses = useSelector(selectAddresses);
