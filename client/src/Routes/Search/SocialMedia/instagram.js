@@ -4,16 +4,13 @@ import "./instagram.css";
 
 import { addressName } from "../searchBarResults/socialMediaSlice";
 
-// Sample pics
-import pic1 from "../../../Assets/bangkok.jpg";
-import pic2 from "../../../Assets/hotels.jpg";
-import pic3 from "../../../Assets/nyc.jpg";
-
 export const Instagram = ({ click }) => {
-  const images = [pic1, pic2, pic3];
   const [index, setIndex] = useState(0);
-  const [currentPic, setCurrentPics] = useState(images[index]);
-  const [scrapeData, setScrapeData] = useState([]);
+  const [postImg, setPostImg] = useState([
+    "https://miro.medium.com/max/1080/0*DqHGYPBA-ANwsma2.gif",
+  ]);
+  const [postTime, setPostTime] = useState([]);
+  const [postCaption, setPostCaption] = useState([]);
 
   let address = useSelector(addressName);
 
@@ -23,7 +20,14 @@ export const Instagram = ({ click }) => {
         method: "GET",
       });
       let fetchJson = await fetchRes.json();
-      setScrapeData(fetchJson["instaPosts"][0]);
+      setPostImg([]);
+      setPostTime([]);
+      setPostCaption([]);
+      fetchJson["instaPosts"][0].map((data) => {
+        setPostImg((current) => [...current, data["imgSrc"]]);
+        setPostTime((current) => [...current, data["timeStamp"]]);
+        setPostCaption((current) => [...current, data["caption"]]);
+      });
     } catch (err) {
       console.log(err);
     }
@@ -32,22 +36,18 @@ export const Instagram = ({ click }) => {
   const onSlide = (e) => {
     if (e.target.className === "left") {
       if (index > 0) setIndex(index - 1);
-      else setIndex(images.length - 1);
-      setCurrentPics(images[index]);
+      else setIndex(postImg.length - 1);
     }
     if (e.target.className === "right") {
-      if (index < images.length - 1) {
+      if (index < postImg.length - 1) {
         setIndex(index + 1);
       } else setIndex(0);
-      setCurrentPics(images[index]);
     }
   };
 
   useEffect(() => {
     if (address !== undefined) onFetchScrape();
   }, [address]);
-
-  console.log(scrapeData);
 
   return (
     <div className="Instagram">
@@ -61,8 +61,12 @@ export const Instagram = ({ click }) => {
       </div>
       <div
         className="insta_pic"
-        style={{ backgroundImage: `url(${currentPic})` }}
+        style={{ backgroundImage: `url(${postImg[index]})` }}
       ></div>
+      <div className="insta_description">
+        <div className="insta_timestamp">{postTime[index]}</div>
+        <div className="insta_caption">{postCaption[index]}</div>
+      </div>
     </div>
   );
 };

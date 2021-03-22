@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import "./socialScrape.css";
 
 import { Instagram } from "./instagram";
@@ -10,6 +10,7 @@ export const SocialScrape = ({ address }) => {
   const instaPage = useRef();
   const ytPage = useRef();
 
+  // Show/hide social media page by which is clicked & activate/deactivate tab
   const onTabClick = (e) => {
     e.preventDefault();
 
@@ -28,6 +29,10 @@ export const SocialScrape = ({ address }) => {
       ytTab.current.className = ytTab.current.className + " active";
     }
   };
+
+  useEffect(() => {
+    instaTab.current.className = instaTab.current.className + " active";
+  }, []);
 
   return (
     <div className="socialScrape">
