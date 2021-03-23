@@ -3,10 +3,15 @@ import { useSelector, useDispatch } from "react-redux";
 import "./searchBarResults.css";
 
 import { selectAddresses } from "../SearchMap/addressSlice";
-import { addressSelected } from "./socialMediaSlice";
+import {
+  addressSelected,
+  addressClicked,
+  addressClickStatus,
+} from "./socialMediaSlice";
 
 const SearchBarResults = () => {
   let addresses = useSelector(selectAddresses);
+  let clickStatus = useSelector(addressClickStatus);
   let dispatch = useDispatch();
 
   let attractionsRef = useRef();
@@ -29,6 +34,7 @@ const SearchBarResults = () => {
 
   const onAddressClick = (e) => {
     dispatch(addressSelected(e.target.textContent));
+    if (clickStatus === false) dispatch(addressClicked(true));
   };
 
   const onHeaderClick = (e) => {

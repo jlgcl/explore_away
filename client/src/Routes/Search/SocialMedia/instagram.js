@@ -4,7 +4,7 @@ import "./instagram.css";
 
 import { addressName } from "../searchBarResults/socialMediaSlice";
 
-export const Instagram = ({ click }) => {
+export const Instagram = () => {
   const [index, setIndex] = useState(0);
   const [postImg, setPostImg] = useState([
     "https://miro.medium.com/max/1080/0*DqHGYPBA-ANwsma2.gif",

@@ -18,6 +18,14 @@
   top: 0;
 }
 
+.social_close {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: 20px;
+}
+
 .insta_tab,
 .yt_tab {
   border: 0.5px solid rgb(207, 207, 207);
@@ -49,7 +57,7 @@
 }
 
 .YouTube {
-  display: none;
+  display: block;
   height: 100%;
   width: 100%;
 }

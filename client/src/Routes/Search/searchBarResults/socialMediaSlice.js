@@ -1,19 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = [];
+const initialState = { address: [], clickEvent: false };
 
 const socialMediaSlice = createSlice({
   name: "selectedAddress",
   initialState,
   reducers: {
     addressSelected(state, action) {
-      state.splice(0, 1, action.payload);
+      state.address.splice(0, 1, action.payload);
+    },
+    addressClicked(state, action) {
+      state.clickEvent = action.payload;
     },
   },
 });
 
-export const { addressSelected } = socialMediaSlice.actions;
+export const { addressSelected, addressClicked } = socialMediaSlice.actions;
 
 export default socialMediaSlice.reducer;
 
-export const addressName = (state) => state.socialMedia[0];
+export const addressName = (state) => state.socialMedia.address[0];
+export const addressClickStatus = (state) => state.socialMedia.clickEvent;
