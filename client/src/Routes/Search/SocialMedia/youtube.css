@@ -30,3 +30,9 @@
   font-size: 30px;
   z-index: 7;
 }
+
+.yt_left:hover,
+.yt_right:hover {
+  cursor: pointer;
+  text-shadow: 2px 1px 3px black;
+}

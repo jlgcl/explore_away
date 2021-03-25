@@ -6,6 +6,8 @@ import { searchSubmitted } from "./searchSlice";
 import { DropDown } from "./DropDown/dropDown";
 import SearchBarResults from "./searchBarResults/searchBarResults";
 
+import backArrow from "../../Assets/backarrow.png";
+
 const SearchBar = () => {
   const [input, setInput] = useState("");
   const [cities, setCities] = useState([]);
@@ -47,6 +49,9 @@ const SearchBar = () => {
 
   return (
     <div className="SearchBar">
+      <a className="Search_Back_Container" href="/">
+        <img className="Search_Back" src={backArrow} alt="back"></img>
+      </a>
       <form className="SearchBar_Form">
         <div className="SearchBar_Container">
           <input

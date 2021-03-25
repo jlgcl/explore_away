@@ -14,7 +14,7 @@ const topListScraper = async (category, cityName, stateName, cityCode) => {
 
   switch (category) {
     case "Attractions":
-      scrapeLink = "._255i5rcQ > h3";
+      scrapeLink = "._1gpq3zsA._1zP41Z7X";
       break;
     case "Restaurants":
       scrapeLink =

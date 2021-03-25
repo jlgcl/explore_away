@@ -54,10 +54,18 @@
 .address_attractions,
 .address_restaurants,
 .address_hotels {
-  padding: 6px;
+  padding: 6px 25px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   font-family: balsamiq;
+}
+
+.address_attractions:hover,
+.address_restaurants:hover,
+.address_hotels:hover {
+  cursor: pointer;
+  transition: ease-in-out 0.2s;
+  background-color: rgb(233, 233, 255);
 }

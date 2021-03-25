@@ -12,6 +12,7 @@ const cityQuery = (name) => {
 
 const tripAdvisorScraper = async (city) => {
   const { rows } = await cityQuery(city);
+
   const cityName = rows[0]["city"];
   const stateName = rows[0]["state"];
   const cityCode = rows[0]["ta_code"];

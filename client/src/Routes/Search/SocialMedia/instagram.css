@@ -34,6 +34,11 @@
   z-index: 7;
 }
 
+.arrows .right:hover,
+.arrows .left:hover {
+  cursor: pointer;
+}
+
 .insta_description {
   position: absolute;
   bottom: 0;
@@ -56,4 +61,8 @@
 
 .insta_timestamp {
   margin-top: 10px;
+}
+
+.social_close:hover {
+  cursor: pointer;
 }
