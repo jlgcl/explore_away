@@ -13,7 +13,7 @@ import {
 import { selectSearch } from "../searchSlice";
 import { addressName } from "../searchBarResults/socialMediaSlice";
 
-const SearchMap = () => {
+const SearchMap = ({ setLoading }) => {
   const [coordinate, setCoordinate] = useState([51.5, -0.12]);
   const [searchInput, setSearchInput] = useState("London");
   const [addresses, setAddresses] = useState(null);
@@ -27,11 +27,15 @@ const SearchMap = () => {
   const dispatch = useDispatch();
 
   const fetchCityCoordinate = async () => {
+    setLoading(true);
     try {
       let fetchReq = await fetch(`/tripadvisor/${searchInput}`, {
         method: "GET",
       });
       let fetchJson = await fetchReq.json();
+
+      setLoading(false);
+
       setCoordinate(fetchJson["coordinate"]);
       setCenterPosition(fetchJson["coordinate"]);
       setAddresses(fetchJson);

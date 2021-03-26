@@ -16,7 +16,7 @@ const Topbar = () => {
         <a href="/search">Search</a>
         <a href="/#">About</a>
         <a href="/#">Contact</a>
-        <a href="/#">Sign In</a>
+        <a href="/signin">Sign In</a>
       </div>
     </div>
   );

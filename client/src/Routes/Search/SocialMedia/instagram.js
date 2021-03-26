@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import "./instagram.css";
+import "../Loading/searchLoading.css";
 
+import { SocialLoading } from "../Loading/socialLoading";
 import { addressName } from "../searchBarResults/socialMediaSlice";
 
 export const Instagram = () => {
+  const [loading, setLoading] = useState(false);
   const [index, setIndex] = useState(0);
   const [postImg, setPostImg] = useState([
     "https://miro.medium.com/max/1080/0*DqHGYPBA-ANwsma2.gif",
@@ -12,14 +15,18 @@ export const Instagram = () => {
   const [postTime, setPostTime] = useState([]);
   const [postCaption, setPostCaption] = useState([]);
 
+  let loadingRef = useRef();
+
   let address = useSelector(addressName);
 
   const onFetchScrape = async () => {
+    setLoading(true);
     try {
       let fetchRes = await fetch(`/instagram/${address}`, {
         method: "GET",
       });
       let fetchJson = await fetchRes.json();
+      setLoading(false);
       setPostImg([]);
       setPostTime([]);
       setPostCaption([]);
@@ -49,8 +56,16 @@ export const Instagram = () => {
     if (address !== undefined) onFetchScrape();
   }, [address]);
 
+  useEffect(() => {
+    if (loading === false) loadingRef.current.style.display = "none";
+    else loadingRef.current.style.display = "block";
+  });
+
   return (
     <div className="Instagram">
+      <div className="SocialLoading" ref={loadingRef}>
+        <SocialLoading />
+      </div>
       <div className="arrows">
         <div className="left" onClick={onSlide}>
           ❮

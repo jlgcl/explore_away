@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./Components/Navbar/Navbar";
 import Home from "./Routes/Home/home";
 import Search from "./Routes/Search/search";
+import SignIn from "./Routes/SignIn/signIn";
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
             </Route>
             <Route path="/search">
               <Search />
+            </Route>
+            <Route path="/signin">
+              <SignIn />
             </Route>
           </Switch>
         </Router>
