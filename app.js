@@ -43,6 +43,9 @@ app.use(signup);
 app.use(scrapeController);
 app.use(cityList);
 
+/// -------- PRIVILEGED ROUTES -------- //
+//app.use("/itinerary", passport.authenticate("jwt"), itinerary);
+
 // Catch all route for production
 // app.get("/*", (req, res) => {
 //   res.sendFile(path.join(__dirname, "client/build/index.html"));
@@ -50,9 +53,9 @@ app.use(cityList);
 
 /// -------- ERROR HANDLERS -------- ///
 
-app.use((req, res, next) => {
-  next(createError(404));
-});
+// app.use((req, res, next) => {
+//   next(createError(404));
+// });
 
 app.use((err, req, res, next) => {
   res.locals.messge = err.message;

@@ -1,0 +1,101 @@
+@font-face {
+  src: url("../../Assets/JosefinSans-Regular.ttf");
+  font-family: auth_title;
+}
+
+.Auth {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.Auth_Container {
+  height: 70%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+}
+
+.SignIn_Title,
+.Signup_Title {
+  padding: 50px;
+  text-align: center;
+  font-family: auth_title;
+  font-size: 30px;
+}
+
+.SignIn,
+.Signup {
+  width: 50%;
+  height: 100%;
+  padding: 20px;
+  border: 2px solid rgb(214, 214, 214);
+  box-shadow: 3px 3px 15px -6px rgba(0, 0, 0, 0.75);
+  border-radius: 5px;
+}
+
+.SignIn_form,
+.Signup_form {
+  display: flex;
+  margin: 0 10%;
+  height: 50%;
+  padding: 15px;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.SignIn_form input,
+.Signup_form input {
+  padding: 10px;
+  border: 1px solid rgb(214, 214, 214);
+  border-radius: 5px;
+}
+
+#submit {
+  width: 50%;
+  margin: 0 auto;
+  padding: 10px;
+  font-family: balsamiq;
+}
+
+#submit:hover {
+  cursor: pointer;
+}
+
+.Auth_Switch {
+  position: absolute;
+  top: 75%;
+  border: 1px solid rgb(182, 182, 182);
+  border-radius: 5px;
+  padding: 10px;
+  font-family: balsamiq;
+}
+
+.Auth_Switch:hover {
+  cursor: pointer;
+}
+
+.Auth_Back_Container {
+  margin-top: 5px;
+  height: 50px;
+  width: 50px;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.Auth_Back {
+  margin-top: 5px;
+  height: 50px;
+  width: 50px;
+  z-index: 1;
+}
+
+.Auth_Back:hover {
+  cursor: pointer;
+}
