@@ -15,7 +15,7 @@ router.post("/api/signup", [
   //   }
   // }),
   (req, res, next) => {
-    console.log(req);
+    console.log(req.body);
     var errors = validationResult(req);
 
     bcrypt.hash(req.body.password, 10, (err, hashedPassword) => {
@@ -34,8 +34,8 @@ router.post("/api/signup", [
             "INSERT INTO users(username, password, created_on) VALUES ($1, $2, $3)",
             [req.body.username, hashedPassword, currentTimestamp]
           )
-          .then((res) => res.json("Signup successful"))
-          .catch((err) => res.json(err.stack));
+          .then((response) => res.json("Signup Successful"))
+          .catch((err) => res.json("Signup Error: username may already exist"));
       } else {
         res.json("User already exists");
       }

@@ -4,7 +4,6 @@ const cookie_parser = require("cookie-parser");
 const router = express.Router();
 const session = require("express-session");
 const cors = require("cors");
-const bodyParser = require("body-parser");
 const path = require("path");
 const passport = require("passport");
 
@@ -22,12 +21,7 @@ var app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use(
-  express.urlencoded({
-    extended: false,
-  })
-);
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cookie_parser());
 
 /// -------- AUTHENTICATION -------- ///
@@ -42,6 +36,11 @@ app.use(login);
 app.use(signup);
 app.use(scrapeController);
 app.use(cityList);
+
+app.get("/api/loginstatus", (req, res) => {
+  console.log(req.user);
+  res.send(req.user.username);
+});
 
 /// -------- PRIVILEGED ROUTES -------- //
 //app.use("/itinerary", passport.authenticate("jwt"), itinerary);

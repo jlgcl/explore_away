@@ -12,6 +12,7 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
   const [confirmPw, setConfirmPw] = useState("");
   const [authRes, setAuthRes] = useState(null);
+  const [signInMsg, setSignInMsg] = useState(null);
 
   const onAuthClick = (e) => {
     if (authText === "Become a member") {
@@ -39,16 +40,21 @@ const SignIn = () => {
 
   const onSignupSubmit = async (e) => {
     e.preventDefault();
-
     if (password === confirmPw) {
       try {
+        let data = {
+          username: username,
+          password: password,
+        };
         let fetchRes = await fetch("/signup", {
           method: "POST",
-          body: {
-            username,
-            password,
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
           },
+          body: JSON.stringify(data),
         });
+        console.log(data);
         let fetchJson = await fetchRes.json();
         setAuthRes(fetchJson);
       } catch (err) {
@@ -63,13 +69,14 @@ const SignIn = () => {
     try {
       let fetchRes = await fetch("/login", {
         method: "POST",
-        body: {
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
           username: username,
           password: password,
-        },
+        }),
       });
       let fetchJson = await fetchRes.json();
-      setAuthRes(fetchJson);
+      setSignInMsg(fetchJson["message"]);
     } catch (err) {
       console.log(err);
     }
@@ -79,7 +86,21 @@ const SignIn = () => {
     signupRef.current.style.display = "none";
   }, []);
 
-  console.log(authRes, username, password);
+  useEffect(() => {
+    if (authRes !== undefined && authRes !== null) {
+      alert(authRes);
+      window.location.href = "/signin";
+    }
+  }, [authRes]);
+
+  useEffect(() => {
+    if (signInMsg !== undefined && signInMsg !== null) {
+      alert(signInMsg);
+      window.location.href = "/";
+    }
+  }, [signInMsg]);
+
+  console.log(authRes);
 
   return (
     <div className="Auth">

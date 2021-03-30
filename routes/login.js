@@ -21,10 +21,10 @@ router.post("/api/login", (req, res) => {
       // check the user in db is admin & sign jwt
       if (user["id"]["privilege"] === "admin") {
         const token = jwt.sign(user, process.env.SECRET_KEY);
-        res.json({ user, token });
+        res.json({ user, token, message: "Sign In Successful" });
       } else {
         const token = jwt.sign(user, process.env.PUBLIC_KEY);
-        res.json({ user, token });
+        res.json({ user, token, message: "Sign In Successful" });
       }
     });
   })(req, res);

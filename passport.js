@@ -15,15 +15,19 @@ passport.use(
       pool.query(
         "SELECT username, password, privilege FROM users WHERE username=$1",
         [username],
-        (err, res) => {
-          if (err) {
+        (err, response) => {
+          if (err || response.rows[0] === undefined) {
             return cb(err);
           }
-          bcrypt.compare(password, res.rows[0]["password"], (error, result) => {
-            if (result) return cb(null, { id: res.rows[0] });
-            else if (error) return cb(null, error.stack);
-            else return cb(null, false, { message: "unsuccessful login" });
-          });
+          bcrypt.compare(
+            password,
+            response.rows[0]["password"],
+            (error, result) => {
+              if (result) return cb(null, { id: response.rows[0] });
+              else if (error) return cb(null, error.stack);
+              else return cb(null, false, { message: "unsuccessful login" });
+            }
+          );
         }
       );
     }
@@ -62,10 +66,8 @@ passport.deserializeUser((id, cb) => {
     [parseInt(id, 10)],
     (err, res) => {
       if (err) {
-        res.json("Error when selecting user on session deserialize", err);
         return cb(err);
       }
-
       cb(null, res.rows[0]);
     }
   );
