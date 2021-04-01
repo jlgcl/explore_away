@@ -42,7 +42,7 @@ passport.use(
       secretOrKey: process.env.SECRET_KEY,
     },
     (jwtPayload, cb) => {
-      const user = pool.query("SELECT * FROM users WHERE id=$1", [
+      const user = pool.query("SELECT * FROM users WHERE user_id=$1", [
         jwtPayload.sub,
       ]);
 
@@ -61,9 +61,10 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser((id, cb) => {
   // PSQL query for user_id
+  let username = id.username;
   pool.query(
-    "SELECT user_id, username FROM users WHERE id=($1)",
-    [parseInt(id, 10)],
+    "SELECT user_id, username FROM users WHERE username=$1",
+    [username],
     (err, res) => {
       if (err) {
         return cb(err);

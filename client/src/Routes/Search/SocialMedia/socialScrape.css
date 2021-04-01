@@ -9,6 +9,7 @@
   border: 0.5px solid rgb(207, 207, 207);
   border-radius: 5px;
   z-index: 5;
+  font-family: Lobster;
 }
 
 .tabs {
@@ -16,6 +17,20 @@
   display: flex;
   flex-direction: row;
   top: 0;
+}
+
+.itinerary_add {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: 40px;
+  border: 1px solid rgb(207, 207, 207);
+  border-radius: 5px;
+}
+
+.itinerary_add:hover {
+  cursor: pointer;
 }
 
 .social_close {

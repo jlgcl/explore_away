@@ -100,8 +100,6 @@ const SignIn = () => {
     }
   }, [signInMsg]);
 
-  console.log(authRes);
-
   return (
     <div className="Auth">
       <a className="Auth_Back_Container" href="/">

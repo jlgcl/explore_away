@@ -38,8 +38,7 @@ app.use(scrapeController);
 app.use(cityList);
 
 app.get("/api/loginstatus", (req, res) => {
-  console.log(req.user);
-  res.send(req.user.username);
+  res.json(req.user);
 });
 
 /// -------- PRIVILEGED ROUTES -------- //

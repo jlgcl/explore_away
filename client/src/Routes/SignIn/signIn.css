@@ -9,6 +9,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-image: url("../../Assets/blurred-background.jpg");
+  background-size: cover;
 }
 
 .Auth_Container {
@@ -36,6 +38,7 @@
   border: 2px solid rgb(214, 214, 214);
   box-shadow: 3px 3px 15px -6px rgba(0, 0, 0, 0.75);
   border-radius: 5px;
+  background-color: white;
 }
 
 .SignIn_form,

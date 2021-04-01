@@ -66,6 +66,7 @@ export const SocialScrape = () => {
         <div className="yt_tab" ref={ytTab} onClick={onTabClick}>
           YouTube
         </div>
+        <div className="itinerary_add">Add to Itinerary</div>
         <div className="social_close" onClick={onCloseClick}>
           ✖
         </div>

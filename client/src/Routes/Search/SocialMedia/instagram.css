@@ -50,6 +50,7 @@
   z-index: 8;
   overflow-y: scroll;
   box-sizing: border-box;
+  font-family: raleway;
 }
 
 .insta_timestamp,
