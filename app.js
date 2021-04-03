@@ -11,6 +11,7 @@ const login = require("./routes/login");
 const signup = require("./routes/signup");
 const scrapeController = require("./scraper/scrapeController");
 const cityList = require("./routes/cityList");
+const itinerary = require("./itinerary/itinerary");
 
 var app = express();
 
@@ -36,6 +37,7 @@ app.use(login);
 app.use(signup);
 app.use(scrapeController);
 app.use(cityList);
+app.use(itinerary);
 
 app.get("/api/loginstatus", (req, res) => {
   res.json(req.user);

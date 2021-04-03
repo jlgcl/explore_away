@@ -76,6 +76,7 @@ const SignIn = () => {
         }),
       });
       let fetchJson = await fetchRes.json();
+      localStorage.setItem("user", fetchJson["user"]["id"]["username"]);
       setSignInMsg(fetchJson["message"]);
     } catch (err) {
       console.log(err);

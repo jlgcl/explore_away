@@ -14,6 +14,7 @@ const Topbar = () => {
 
   const onSignout = async () => {
     await fetch("/signout", { method: "POST" });
+    localStorage.removeItem("user");
     window.location.href = "/";
   };
 

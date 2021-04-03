@@ -4,6 +4,7 @@ import "./socialScrape.css";
 
 import { Instagram } from "./instagram";
 import { YouTube } from "./youtube";
+import { ItineraryAdd } from "./itineraryAdd";
 
 import {
   addressClicked,
@@ -66,7 +67,7 @@ export const SocialScrape = () => {
         <div className="yt_tab" ref={ytTab} onClick={onTabClick}>
           YouTube
         </div>
-        <div className="itinerary_add">Add to Itinerary</div>
+        <ItineraryAdd />
         <div className="social_close" onClick={onCloseClick}>
           ✖
         </div>
