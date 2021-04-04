@@ -31,7 +31,7 @@ const Topbar = () => {
           <a href="/#">
             <b>{user}</b>
           </a>
-          <a href="/#" onClick={onSignout}>
+          <a href="/" onClick={onSignout}>
             Sign Out
           </a>
         </>
@@ -48,9 +48,9 @@ const Topbar = () => {
       </div>
       <div className="logo" />
       <div className="Navlinks">
-        <a href="/#">Home</a>
+        <a href="/">Home</a>
         <a href="/#">Travel Plan</a>
-        <a href="/#">Daily Itinerary</a>
+        <a href="/daily_itinerary">Daily Itinerary</a>
         <a href="/search">Search</a>
         <a href="/#">About</a>
         <a href="/#">Contact</a>

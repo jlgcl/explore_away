@@ -13,9 +13,9 @@ export const ItineraryAdd = () => {
   const [renderContent, setRenderContent] = useState("Must Be Logged In");
 
   let address = useSelector(addressName);
-  let addresses = useSelector(selectAddresses);
   let address_type;
   let city = useSelector(selectSearch);
+  let addresses = useSelector(selectAddresses);
 
   const findAddressType = () => {
     if (
@@ -31,6 +31,8 @@ export const ItineraryAdd = () => {
   };
 
   const onAddItinerary = async (e) => {
+    e.preventDefault();
+
     findAddressType();
     let data = {
       username: localStorage.getItem("user"),
@@ -40,17 +42,19 @@ export const ItineraryAdd = () => {
       time: date.v[0].toLocaleString(),
     };
 
-    console.log(JSON.stringify(data));
-
-    await fetch("/add_itinerary", {
+    let fetchRes = await fetch("/add_itinerary", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     });
+    let fetchJson = await fetchRes.json();
+
+    if (fetchJson === "Itinerary Already Added")
+      alert("Itinerary Already Added");
+    else alert("Itinerary Added");
   };
-  console.log(addresses["attractions"][0]);
 
   useEffect(() => {
     if (
@@ -72,7 +76,7 @@ export const ItineraryAdd = () => {
         </>
       );
     }
-  }, []);
+  }, [address, addresses, date]); // inject three states to update the render contents & relevant states inside add itinerary functions
 
   return <div className="itinerary_add">{renderContent}</div>;
 };

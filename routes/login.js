@@ -32,7 +32,6 @@ router.post("/api/login", (req, res) => {
 
 router.post("/api/signout", (req, res) => {
   req.logout();
-  req.redirect("/api");
 });
 
 module.exports = router;

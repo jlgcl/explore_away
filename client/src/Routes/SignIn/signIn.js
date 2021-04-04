@@ -60,6 +60,8 @@ const SignIn = () => {
       } catch (err) {
         console.log(err);
       }
+    } else {
+      alert("Passwords don't match");
     }
   };
 
@@ -137,7 +139,7 @@ const SignIn = () => {
               onChange={onUsernameInput}
             ></input>
             <input
-              type="text"
+              type="password"
               placeholder="Password"
               onChange={onPasswordInput}
             ></input>
