@@ -18,4 +18,34 @@ router.post("/api/add_itinerary", async (req, res) => {
     .catch((err) => res.json("Itinerary Already Added"));
 });
 
+router.post("/api/get_itinerary", async (req, res) => {
+  let username = req.body.username;
+  let {
+    rows,
+  } = await pool.query(
+    "SELECT city, address, address_type, time FROM daily_itinerary WHERE username=$1",
+    [username]
+  );
+
+  // group itineraries by date
+  const groups = rows.reduce((groups, item) => {
+    const date = item.time.split(", ")[0]; // obtain the first half of the splitted item (date)
+    if (!groups[date]) {
+      groups[date] = [];
+    }
+    groups[date].push(item); // push itinerary to the groups accumulator's date key
+    return groups;
+  }, {});
+
+  // new return array format
+  const groupArrays = Object.keys(groups).map((date) => {
+    return {
+      date,
+      itineraries: groups[date],
+    };
+  });
+
+  res.json(groupArrays);
+});
+
 module.exports = router;
