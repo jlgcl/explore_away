@@ -1,7 +1,24 @@
+@font-face {
+  font-family: quicksand;
+  src: url("../../Fonts/Quicksand-Regular.ttf");
+}
+
+@font-face {
+  font-family: Londrina;
+  src: url("../../Fonts/LondrinaSolid-Regular.ttf");
+}
+
+@font-face {
+  font-family: shadow;
+  src: url("../../Fonts/ShadowsIntoLight-Regular.ttf");
+}
+
 .daily_itinerary {
   width: 100vw;
   min-height: 100vh;
   background-image: url("../../Assets/sky_wallpaper.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
   opacity: 1;
   z-index: -5;
   overflow-y: scroll;
@@ -29,4 +46,64 @@
   vertical-align: center;
   font-size: 50px;
   font-family: Architect;
+  box-shadow: 5px 5px 5px -4px #000000;
+}
+
+.itinerary_group {
+  margin: 50px 20%;
+  padding: 50px 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 5px 10px 10px -5px #000000;
+}
+
+.itinerary_group_header {
+  font-size: 25px;
+  font-family: Lobster;
+  padding: 50px 25px;
+}
+
+.itinerary_item {
+  padding: 0 55px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.itinerary_time {
+  margin: 100px 0;
+  width: 110px;
+  font-family: quicksand;
+  font-size: 20px;
+  text-align: right;
+}
+
+.itinerary_address_type {
+  height: 100px;
+  width: 100px;
+}
+
+.itinerary_address_type_child {
+  height: 100%;
+  width: 100%;
+  background-size: 60% 60%;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 5;
+  border-radius: 50%;
+}
+
+.itinerary_content {
+  width: 300px;
+}
+
+.itinerary_address {
+  font-family: Londrina;
+  font-size: 40px;
+}
+
+.itinerary_city {
+  font-family: shadow;
+  font-size: 35px;
 }
