@@ -23,6 +23,7 @@ const DailyItinerary = () => {
     setFetchData(fetchJson);
   };
 
+  // Set image by address type
   const backgroundImgSet = (addressType) => {
     if (addressType === "attractions")
       return (
@@ -57,6 +58,21 @@ const DailyItinerary = () => {
     return null;
   };
 
+  const onDeleteItinerary = async (itinerary) => {
+    let data = {
+      username: localStorage.getItem("user"),
+      city: itinerary.city,
+      address: itinerary.address,
+      address_type: itinerary.address_type,
+      time: itinerary.time,
+    };
+    await fetch("/delete_itinerary", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+  };
+
   useEffect(() => {
     if (username === undefined || username === null) {
       alert("You must be logged in");
@@ -84,6 +100,15 @@ const DailyItinerary = () => {
                 <div className="itinerary_content">
                   <div className="itinerary_address">{itinerary.address}</div>
                   <div className="itinerary_city">{itinerary.city}</div>
+                </div>
+                <div
+                  className="itinerary_delete"
+                  onClick={() => {
+                    onDeleteItinerary(itinerary);
+                    window.location.href = "/daily_itinerary";
+                  }}
+                >
+                  Delete
                 </div>
               </div>
             ))}

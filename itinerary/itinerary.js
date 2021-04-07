@@ -18,6 +18,19 @@ router.post("/api/add_itinerary", async (req, res) => {
     .catch((err) => res.json("Itinerary Already Added"));
 });
 
+router.post("/api/delete_itinerary", async (req, res) => {
+  let username = req.body.username;
+  let city = req.body.city;
+  let address = req.body.address;
+  let address_type = req.body.address_type;
+  let time = req.body.time;
+
+  pool.query(
+    "DELETE FROM daily_itinerary WHERE username=$1 AND city=$2 AND address=$3 AND address_type=$4 AND time=$5",
+    [username, city, address, address_type, time]
+  );
+});
+
 router.post("/api/get_itinerary", async (req, res) => {
   let username = req.body.username;
   let {

@@ -13,8 +13,8 @@ const Topbar = () => {
   };
 
   const onSignout = async () => {
-    await fetch("/signout", { method: "POST" });
     localStorage.removeItem("user");
+    await fetch("/signout", { method: "GET" });
     window.location.href = "/";
   };
 
@@ -39,6 +39,8 @@ const Topbar = () => {
     }
   }, [user]);
 
+  console.log(user);
+
   return (
     <div className="Topbar">
       <div className="toggleBars">
@@ -49,11 +51,8 @@ const Topbar = () => {
       <div className="logo" />
       <div className="Navlinks">
         <a href="/">Home</a>
-        <a href="/#">Travel Plan</a>
         <a href="/daily_itinerary">Daily Itinerary</a>
         <a href="/search">Search</a>
-        <a href="/#">About</a>
-        <a href="/#">Contact</a>
         {renderContent}
       </div>
     </div>

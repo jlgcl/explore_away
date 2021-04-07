@@ -30,8 +30,9 @@ router.post("/api/login", (req, res) => {
   })(req, res);
 });
 
-router.post("/api/signout", (req, res) => {
+router.get("/api/signout", (req, res) => {
   req.logout();
+  res.redirect("/");
 });
 
 module.exports = router;

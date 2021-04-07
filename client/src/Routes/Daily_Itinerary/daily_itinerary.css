@@ -107,3 +107,11 @@
   font-family: shadow;
   font-size: 35px;
 }
+
+.itinerary_delete {
+  font-family: lobster;
+}
+
+.itinerary_delete:hover {
+  cursor: pointer;
+}
