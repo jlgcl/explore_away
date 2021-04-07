@@ -1,12 +1,13 @@
 # Explore Away
 
-Daily Post website allows the user to signup, login, use interactive map, search attractions/restaurants/hotels, and create personal itineraries.
+Explore Away is a travel assist app that allows the user to signup, login, use interactive map, search attractions/restaurants/hotels, view latest social media posts for each attraction, and create personal itineraries.
 
-Tools used:
+Built with:
 
 Server-side: Express.js/Node.js
-Client-side: React, Styled Components for modularized CSS, Bootstrap
-Others: multer (for file uploads), PassportJS: LocalStrategy (login authentication) & JWTStrategy (delete user access), bcrypt (password encryption)
+Database: PostgreSQL
+Client-side: React, Redux, Leaflet
+Others: Puppeteer & Cheerio (data scraping & automation), PassportJS: LocalStrategy (login authentication), bcrypt (password encryption)
 
 Steps to Run:
 
