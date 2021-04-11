@@ -14,7 +14,8 @@ Steps to Run:
 1. git clone/download the source files.
 2. npm install to install dependencies (@ both server & client directories).
 3. Start server: node ./bin/www (@ /explore_away) OR npm run devstart
-4. Start client: npm start (@ /explore_away/client)
+4. Import exploreaway.sql file to the local database
+5. Start client: npm start (@ /explore_away/client)
 
 
 ## Images
