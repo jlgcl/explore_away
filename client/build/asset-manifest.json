@@ -1,0 +1,39 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e151368f.chunk.css",
+    "main.js": "/static/js/main.9be78ac2.chunk.js",
+    "main.js.map": "/static/js/main.9be78ac2.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.900dd88b.js",
+    "runtime-main.js.map": "/static/js/runtime-main.900dd88b.js.map",
+    "static/css/2.7d18928f.chunk.css": "/static/css/2.7d18928f.chunk.css",
+    "static/js/2.6dc76b7a.chunk.js": "/static/js/2.6dc76b7a.chunk.js",
+    "static/js/2.6dc76b7a.chunk.js.map": "/static/js/2.6dc76b7a.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.7d18928f.chunk.css.map": "/static/css/2.7d18928f.chunk.css.map",
+    "static/css/main.e151368f.chunk.css.map": "/static/css/main.e151368f.chunk.css.map",
+    "static/js/2.6dc76b7a.chunk.js.LICENSE.txt": "/static/js/2.6dc76b7a.chunk.js.LICENSE.txt",
+    "static/media/home_main.css": "/static/media/Raleway-Bold.d1a96e2a.ttf",
+    "static/media/searchBarResults.css": "/static/media/BalsamiqSans-Regular.600fc423.ttf",
+    "static/media/Navbar.css": "/static/media/Caveat-VariableFont_wght.ddaa3ca3.ttf",
+    "static/media/signIn.css": "/static/media/blurred-background.7cb9ed2f.jpg",
+    "static/media/daily_itinerary.css": "/static/media/itinerary_top.d2becaa8.png",
+    "static/media/bangkok.82e7cfb7.jpg": "/static/media/bangkok.82e7cfb7.jpg",
+    "static/media/it_attraction.345ed1f4.png": "/static/media/it_attraction.345ed1f4.png",
+    "static/media/it_restaurant.2a64b03e.png": "/static/media/it_restaurant.2a64b03e.png",
+    "static/media/itinerary.5f0cb510.png": "/static/media/itinerary.5f0cb510.png",
+    "static/media/london.dd78c3ec.jpg": "/static/media/london.dd78c3ec.jpg",
+    "static/media/nyc.023d267c.jpg": "/static/media/nyc.023d267c.jpg",
+    "static/media/rio.089f4aeb.jpg": "/static/media/rio.089f4aeb.jpg",
+    "static/media/tokyo.7c8d3fb9.jpg": "/static/media/tokyo.7c8d3fb9.jpg",
+    "static/media/toronto.4caca362.jpg": "/static/media/toronto.4caca362.jpg",
+    "static/media/travel_plan.e910e16d.jpg": "/static/media/travel_plan.e910e16d.jpg",
+    "static/media/travel_search.866a05da.jpeg": "/static/media/travel_search.866a05da.jpeg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.900dd88b.js",
+    "static/css/2.7d18928f.chunk.css",
+    "static/js/2.6dc76b7a.chunk.js",
+    "static/css/main.e151368f.chunk.css",
+    "static/js/main.9be78ac2.chunk.js"
+  ]
+}
