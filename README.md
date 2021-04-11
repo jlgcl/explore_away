@@ -16,7 +16,8 @@ Steps to Run:
 3. Start server: node ./bin/www (@ /explore_away) OR npm run devstart
 4. Start client: npm start (@ /explore_away/client)
 
-Images:
+
+## Images
 
 Homepage
 ![Homepage](./Snapshots/homepage.JPG?raw=true "homepage")
