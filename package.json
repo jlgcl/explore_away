@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "devstart": "nodemon ./bin/www",
-    "serverstart": "DEBUG=SongHz:* npm run devstart",
+    "serverstart": "DEBUG=explore_away:* npm run devstart",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "repository": {
