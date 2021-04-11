@@ -16,9 +16,9 @@ const itinerary = require("./itinerary/itinerary");
 var app = express();
 
 // For Production Deployment
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "client/build")));
-}
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static(path.join(__dirname, "client/build")));
+// }
 
 app.use(cors());
 app.use(express.json());
@@ -47,9 +47,9 @@ app.get("/api/loginstatus", (req, res) => {
 //app.use("/itinerary", passport.authenticate("jwt"), itinerary);
 
 // Catch all route for production
-app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client/build/index.html"));
-});
+// app.get("/*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "client/build/index.html"));
+// });
 
 /// -------- ERROR HANDLERS -------- ///
 
