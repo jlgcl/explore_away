@@ -49,7 +49,6 @@ const SignIn = () => {
         let fetchRes = await fetch("/signup", {
           method: "POST",
           headers: {
-            "Access-Control-Allow-Origin": "*",
             "Content-Type": "application/json",
           },
           body: JSON.stringify(data),

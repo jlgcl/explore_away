@@ -18,27 +18,46 @@ const DailyItinerary = () => {
     setFetchData(fetchJson);
   };
 
-  const bgImgSetHelper = useCallback((addressType, type, pic) => {
-    if (addressType === type)
-      return (
-        <div
-          className="itinerary_address_type_child"
-          style={{
-            backgroundImage: `url(${pic})`,
-            backgroundColor: "rgb(255, 182, 148)",
-          }}
-        ></div>
-      );
-    else return null;
+  const bgImgSetHelper = useCallback((addressType) => {
+    switch (addressType) {
+      case "attractions":
+        return (
+          <div
+            className="itinerary_address_type_child"
+            style={{
+              backgroundImage: `url(${attractionPic})`,
+              backgroundColor: "rgb(255, 182, 148)",
+            }}
+          ></div>
+        );
+      case "restaurants":
+        return (
+          <div
+            className="itinerary_address_type_child"
+            style={{
+              backgroundImage: `url(${restaurantPic})`,
+              backgroundColor: "rgb(255, 182, 148)",
+            }}
+          ></div>
+        );
+      case "hotels":
+        return (
+          <div
+            className="itinerary_address_type_child"
+            style={{
+              backgroundImage: `url(${hotelPic})`,
+              backgroundColor: "rgb(255, 182, 148)",
+            }}
+          ></div>
+        );
+      default:
+        return "test";
+    }
   }, []);
 
   // Set image by address type
   const backgroundImgSet = useCallback(
-    (addressType) => {
-      bgImgSetHelper(addressType, "attractions", attractionPic);
-      bgImgSetHelper(addressType, "restaurants", restaurantPic);
-      bgImgSetHelper(addressType, "hotels", hotelPic);
-    },
+    (addressType) => bgImgSetHelper(addressType),
     [bgImgSetHelper]
   );
 
@@ -100,9 +119,6 @@ const DailyItinerary = () => {
         let fetchRes = await fetch("/user", {
           method: "GET",
           credentials: "include",
-          headers: {
-            "Access-Control-Allow-Credentials": true,
-          },
         });
         let fetchJson = await fetchRes.json();
         setUser(fetchJson["username"]);

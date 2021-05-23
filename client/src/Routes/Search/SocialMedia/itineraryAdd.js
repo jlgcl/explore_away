@@ -54,10 +54,7 @@ export const ItineraryAdd = () => {
         body: JSON.stringify(data),
       });
       let fetchJson = await fetchRes.json();
-
-      if (fetchJson === "Itinerary Already Added")
-        alert("Itinerary Already Added");
-      else alert("Itinerary Added");
+      alert(fetchJson);
     },
     [address, city, date.v, addressType, findAddressType, user]
   );
@@ -86,9 +83,6 @@ export const ItineraryAdd = () => {
       let fetchUser = await fetch("/user", {
         method: "GET",
         credentials: "include",
-        headers: {
-          "Access-Control-Allow-Credentials": true,
-        },
       });
       let fetchJson = await fetchUser.json();
       setUser(fetchJson.username);

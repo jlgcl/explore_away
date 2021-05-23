@@ -39,6 +39,10 @@ export const Instagram = () => {
           .replace(
             "https://instagram.fyto1-2.fna.fbcdn.net/",
             "https://worker.lee-james-eng.workers.dev/https://scontent-arn2-1.cdninstagram.com/"
+          )
+          .replace(
+            "https://instagram.fyto1-1.fna.fbcdn.net/",
+            "https://worker.lee-james-eng.workers.dev/https://scontent-arn2-1.cdninstagram.com/"
           );
         setPostImg((current) => [...current, newImgUrl]);
         setPostTime((current) => [...current, data["timeStamp"]]);

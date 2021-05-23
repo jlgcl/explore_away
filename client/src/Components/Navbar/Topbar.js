@@ -10,9 +10,6 @@ const Topbar = () => {
     let fetchRes = await fetch("/user", {
       method: "GET",
       credentials: "include",
-      headers: {
-        "Access-Control-Allow-Credentials": true,
-      },
     });
     let fetchJson = await fetchRes.json();
     if (fetchJson !== undefined) setUser(fetchJson["username"]);
