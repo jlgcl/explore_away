@@ -48,13 +48,11 @@ const topListScraper = async (category, cityName, stateName, cityCode) => {
     addressList.map(async (address) => {
       let res = await coordinateQuery(address);
       if (res !== null) {
-        // push address name & parsed coordinate floats
+        // push address name & parsed coordinate floats from JSON string
         coordinates.push([address, res.map((e) => parseFloat(e))]);
       } else {
         // filter out null coordinate results
-        addressList = addressList
-          .slice(0, addressList.indexOf(address))
-          .concat(addressList.slice(addressList.indexOf(address) + 1));
+        addressList = addressList.filter((item) => item !== address);
       }
     })
   );

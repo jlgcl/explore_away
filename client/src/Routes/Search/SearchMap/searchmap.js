@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./searchmap.css";
 import { MapContainer, TileLayer } from "react-leaflet";
 import { useSelector, useDispatch } from "react-redux";
@@ -26,7 +26,7 @@ const SearchMap = ({ setLoading }) => {
   const centerAddress = useSelector(addressName);
   const dispatch = useDispatch();
 
-  const fetchCityCoordinate = async () => {
+  const memoFetchCoordinate = useCallback(async () => {
     setLoading(true);
     try {
       let fetchReq = await fetch(`/tripadvisor/${searchInput}`, {
@@ -50,39 +50,37 @@ const SearchMap = ({ setLoading }) => {
     } catch (err) {
       console.log(err);
     }
-  };
+  }, [searchInput, dispatch, setLoading]);
+
+  const memoCenterPos = useCallback(() => {
+    const handleCenterPos = (coordinates) => {
+      let findPosition = coordinates.filter(
+        (address) => address[0] === centerAddress
+      );
+      if (findPosition[0] !== undefined) setCenterPosition(findPosition[0][1]);
+    };
+    handleCenterPos(attractionsCoordinates);
+    handleCenterPos(restaurantsCoordinates);
+    handleCenterPos(hotelsCoordinates);
+  }, [
+    attractionsCoordinates,
+    restaurantsCoordinates,
+    hotelsCoordinates,
+    centerAddress,
+  ]);
 
   useEffect(() => {
     if (searchInputState !== undefined) setSearchInput(searchInputState);
   }, [searchInputState]);
 
   useEffect(() => {
-    if (searchInput !== undefined) fetchCityCoordinate();
-  }, [searchInput]);
+    if (searchInput !== undefined) memoFetchCoordinate();
+  }, [searchInput, memoFetchCoordinate]);
 
+  // for social media address selection
   useEffect(() => {
-    if (centerAddress !== undefined) {
-      let attractionsFind = attractionsCoordinates.filter(
-        (address) => address[0] === centerAddress
-      );
-      let restaurantsFind = restaurantsCoordinates.filter(
-        (address) => address[0] === centerAddress
-      );
-      let hotelsFind = hotelsCoordinates.filter(
-        (address) => address[0] === centerAddress
-      );
-      if (attractionsFind[0] !== undefined)
-        setCenterPosition(attractionsFind[0][1]);
-      else if (restaurantsFind[0] !== undefined)
-        setCenterPosition(restaurantsFind[0][1]);
-      else if (hotelsFind[0] !== undefined) setCenterPosition(hotelsFind[0][1]);
-    }
-  }, [
-    centerAddress,
-    attractionsCoordinates,
-    restaurantsCoordinates,
-    hotelsCoordinates,
-  ]);
+    memoCenterPos();
+  }, [centerAddress, memoCenterPos]);
 
   // map of Markers based on attractions list
   return (

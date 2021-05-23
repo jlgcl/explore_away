@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 
 export const DropDown = ({ cities, input, setSelectionInput }) => {
   const [selections, setSelections] = useState([""]);
@@ -20,17 +20,17 @@ export const DropDown = ({ cities, input, setSelectionInput }) => {
     });
   }
 
-  const matchInput = () => {
+  const matchInput = useCallback(() => {
     let match;
     for (let i = 0; i < input.length; i++) {
       match = cities.filter((city) => input[i] === city[i]);
     }
     setSelections(match);
-  };
+  }, [cities, input]);
 
   useEffect(() => {
     if (input !== undefined) matchInput();
-  }, [input]);
+  }, [input, matchInput]);
 
   // Display the dropdown list if input is defined & not an empty string
   useEffect(() => {

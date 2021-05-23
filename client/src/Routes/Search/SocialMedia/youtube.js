@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useSelector } from "react-redux";
 import "./youtube.css";
 
@@ -13,14 +13,14 @@ export const YouTube = () => {
 
   let address = useSelector(addressName);
 
-  const onFetchScrape = async () => {
+  const onFetchScrape = useCallback(async () => {
     try {
       let fetchRes = await fetch(`/youtube/${address}`, {
         method: "GET",
       });
       let fetchJson = await fetchRes.json();
       setVideo([]);
-      fetchJson["items"].map((data) => {
+      fetchJson["items"].forEach((data) => {
         setVideo((current) => [
           ...current,
           `https://youtube.com/embed/${data["id"]["videoId"]}`,
@@ -30,7 +30,7 @@ export const YouTube = () => {
     } catch (err) {
       console.log(err);
     }
-  };
+  }, [address]);
 
   const onSlide = (e) => {
     if (e.target.className === "yt_left") {
@@ -46,7 +46,7 @@ export const YouTube = () => {
 
   useEffect(() => {
     if (address !== undefined) onFetchScrape();
-  }, [address]);
+  }, [address, onFetchScrape]);
 
   return (
     <div className="YouTube">

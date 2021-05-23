@@ -5,13 +5,15 @@ const instaQlScrape = (res) => {
   let edges = res.graphql.hashtag.edge_hashtag_to_top_posts.edges;
 
   let posts = edges.map((edge) => {
-    if (edge)
+    if (edge) {
       return {
         imgSrc: edge.node.display_url,
-        timeStamp: new Date(edge.node.taken_at_timestamp), // convert timestamp to readable time
+        timeStamp: new Date(
+          edge.node.taken_at_timestamp * 1000
+        ).toLocaleString(), // convert timestamp to readable time
         caption: edge.node.accessibility_caption,
       };
-    else return {};
+    } else return {};
   });
 
   return posts;

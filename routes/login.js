@@ -8,7 +8,7 @@ router.post("/api/login", (req, res) => {
   passport.authenticate("local", (err, user, info) => {
     if (err || !user) {
       return res.status(400).json({
-        message: info ? info.message : "login failed",
+        message: info ? info.message : "login failed", // provide error mssage if exists in passport.js : 'login failed'
         user,
         err,
       });
@@ -33,6 +33,10 @@ router.post("/api/login", (req, res) => {
 router.get("/api/signout", (req, res) => {
   req.logout();
   res.redirect("/");
+});
+
+router.get("/api/user", (req, res) => {
+  res.json(req.user);
 });
 
 module.exports = router;

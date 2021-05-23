@@ -7,13 +7,18 @@ const Topbar = () => {
   );
 
   const fetchUser = async () => {
-    let fetchRes = await fetch("/loginstatus", { method: "GET" });
+    let fetchRes = await fetch("/user", {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Access-Control-Allow-Credentials": true,
+      },
+    });
     let fetchJson = await fetchRes.json();
-    setUser(fetchJson["username"]);
+    if (fetchJson !== undefined) setUser(fetchJson["username"]);
   };
 
   const onSignout = async () => {
-    localStorage.removeItem("user");
     await fetch("/signout", { method: "GET" });
     window.location.href = "/";
   };
@@ -39,15 +44,8 @@ const Topbar = () => {
     }
   }, [user]);
 
-  console.log(user);
-
   return (
     <div className="Topbar">
-      <div className="toggleBars">
-        <div className="bar" />
-        <div className="bar" />
-        <div className="bar" />
-      </div>
       <div className="logo" />
       <div className="Navlinks">
         <a href="/">Home</a>

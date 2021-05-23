@@ -10,8 +10,8 @@ import {
 } from "./socialMediaSlice";
 
 const SearchBarResults = () => {
-  let addresses = useSelector(selectAddresses);
-  let clickStatus = useSelector(addressClickStatus);
+  let addresses = useSelector(selectAddresses); // all addresses
+  let clickStatus = useSelector(addressClickStatus); // for social media window view toggle
   let dispatch = useDispatch();
 
   let attractionsRef = useRef();
@@ -22,38 +22,42 @@ const SearchBarResults = () => {
   const [restaurants, setRestaurants] = useState([]);
   const [hotels, setHotels] = useState([]);
 
-  let attractionsRender, restaurantsRender, hotelsRender;
-
-  useEffect(() => {
-    if (addresses !== undefined) {
-      setAttractions(addresses["attractions"][0]);
-      setRestaurants(addresses["restaurants"][0]);
-      setHotels(addresses["hotels"][0]);
-    }
-  }, [addresses]);
-
   const onAddressClick = (e) => {
     dispatch(addressSelected(e.target.textContent));
     if (clickStatus === false) dispatch(addressClicked(true));
   };
 
+  // helper for onHeaderClick function
+  const headerClickHandler = (addressRef) => {
+    if (addressRef.current.style.maxHeight === "0px")
+      addressRef.current.style.maxHeight = "500px";
+    else addressRef.current.style.maxHeight = "0px";
+  };
+
   const onHeaderClick = (e) => {
-    if (e.target.textContent === "Attractions") {
-      if (attractionsRef.current.style.maxHeight === "0px")
-        attractionsRef.current.style.maxHeight = "500px";
-      else attractionsRef.current.style.maxHeight = "0px";
+    switch (e.target.textContent) {
+      case "Attractions":
+        headerClickHandler(attractionsRef);
+        break;
+      case "Restaurants":
+        headerClickHandler(restaurantsRef);
+        break;
+      case "Hotels":
+        headerClickHandler(hotelsRef);
+        break;
+      default:
+        throw new Error();
     }
-    if (e.target.textContent === "Restaurants") {
-      if (restaurantsRef.current.style.maxHeight === "0px")
-        restaurantsRef.current.style.maxHeight = "500px";
-      else restaurantsRef.current.style.maxHeight = "0px";
-    }
-    if (e.target.textContent === "Hotels") {
-      console.log(hotelsRef.current.style.maxHeight);
-      if (hotelsRef.current.style.maxHeight === "0px")
-        hotelsRef.current.style.maxHeight = "500px";
-      else hotelsRef.current.style.maxHeight = "0px";
-    }
+  };
+
+  let attractionsRender, restaurantsRender, hotelsRender;
+
+  const renderHandler = (addresses, classInput) => {
+    return addresses.map((address) => (
+      <div className={classInput} key={address} onClick={onAddressClick}>
+        {address}
+      </div>
+    ));
   };
 
   // check for 'undefined' Redux state
@@ -62,30 +66,19 @@ const SearchBarResults = () => {
     restaurants !== undefined &&
     hotels !== undefined
   ) {
-    attractionsRender = attractions.map((address) => (
-      <div
-        className="address_attractions"
-        key={address}
-        onClick={onAddressClick}
-      >
-        {address}
-      </div>
-    ));
-    restaurantsRender = restaurants.map((address) => (
-      <div
-        className="address_restaurants"
-        key={address}
-        onClick={onAddressClick}
-      >
-        {address}
-      </div>
-    ));
-    hotelsRender = hotels.map((address) => (
-      <div className="address_hotels" key={address} onClick={onAddressClick}>
-        {address}
-      </div>
-    ));
+    attractionsRender = renderHandler(attractions, "address_attractions");
+    restaurantsRender = renderHandler(restaurants, "address_restaurants");
+    hotelsRender = renderHandler(hotels, "address_hotels");
   }
+
+  // set addresses based on Redux address states
+  useEffect(() => {
+    if (addresses !== undefined) {
+      setAttractions(addresses["attractions"][0]);
+      setRestaurants(addresses["restaurants"][0]);
+      setHotels(addresses["hotels"][0]);
+    }
+  }, [addresses]);
 
   return (
     <div className="searchBarResults">

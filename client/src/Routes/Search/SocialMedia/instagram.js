@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import { useSelector } from "react-redux";
 import "./instagram.css";
 import "../Loading/searchLoading.css";
@@ -19,7 +19,7 @@ export const Instagram = () => {
 
   let address = useSelector(addressName);
 
-  const onFetchScrape = async () => {
+  const onFetchScrape = useCallback(async () => {
     setLoading(true);
     try {
       let fetchRes = await fetch(`/instagram/${address}`, {
@@ -30,15 +30,24 @@ export const Instagram = () => {
       setPostImg([]);
       setPostTime([]);
       setPostCaption([]);
-      fetchJson["instaPosts"][0].map((data) => {
-        setPostImg((current) => [...current, data["imgSrc"]]);
+      fetchJson["instaPosts"][0].forEach((data) => {
+        let newImgUrl = data["imgSrc"]
+          .replace(
+            "https://instagram.fyto1-3.fna.fbcdn.net/",
+            "https://worker.lee-james-eng.workers.dev/https://scontent-arn2-1.cdninstagram.com/"
+          )
+          .replace(
+            "https://instagram.fyto1-2.fna.fbcdn.net/",
+            "https://worker.lee-james-eng.workers.dev/https://scontent-arn2-1.cdninstagram.com/"
+          );
+        setPostImg((current) => [...current, newImgUrl]);
         setPostTime((current) => [...current, data["timeStamp"]]);
         setPostCaption((current) => [...current, data["caption"]]);
       });
     } catch (err) {
       console.log(err);
     }
-  };
+  }, [address]);
 
   const onSlide = (e) => {
     if (e.target.className === "left") {
@@ -54,7 +63,7 @@ export const Instagram = () => {
 
   useEffect(() => {
     if (address !== undefined) onFetchScrape();
-  }, [address]);
+  }, [address, onFetchScrape]);
 
   useEffect(() => {
     if (loading === false) loadingRef.current.style.display = "none";

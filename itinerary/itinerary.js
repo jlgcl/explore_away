@@ -31,11 +31,9 @@ router.post("/api/delete_itinerary", async (req, res) => {
   );
 });
 
-router.post("/api/get_itinerary", async (req, res) => {
-  let username = req.body.username;
-  let {
-    rows,
-  } = await pool.query(
+router.get("/api/get_itinerary", async (req, res) => {
+  let username = req.user.username;
+  let { rows } = await pool.query(
     "SELECT city, address, address_type, time FROM daily_itinerary WHERE username=$1",
     [username]
   );

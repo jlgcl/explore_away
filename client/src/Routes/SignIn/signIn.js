@@ -54,11 +54,10 @@ const SignIn = () => {
           },
           body: JSON.stringify(data),
         });
-        console.log(data);
         let fetchJson = await fetchRes.json();
         setAuthRes(fetchJson);
       } catch (err) {
-        console.log(err);
+        alert(err.message);
       }
     } else {
       alert("Passwords don't match");
@@ -67,7 +66,6 @@ const SignIn = () => {
 
   const onSigninSubmit = async (e) => {
     e.preventDefault();
-
     try {
       let fetchRes = await fetch("/login", {
         method: "POST",
@@ -78,10 +76,9 @@ const SignIn = () => {
         }),
       });
       let fetchJson = await fetchRes.json();
-      localStorage.setItem("user", fetchJson["user"]["id"]["username"]);
       setSignInMsg(fetchJson["message"]);
     } catch (err) {
-      console.log(err);
+      setSignInMsg(err.message);
     }
   };
 
@@ -118,12 +115,12 @@ const SignIn = () => {
               onChange={onUsernameInput}
             ></input>
             <input
-              type="text"
+              type="password"
               placeholder="Password"
               onChange={onPasswordInput}
             ></input>
             <input
-              type="text"
+              type="password"
               placeholder="Confirm Password"
               onChange={onConfirmPwInput}
             ></input>

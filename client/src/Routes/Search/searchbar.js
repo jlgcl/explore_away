@@ -17,17 +17,6 @@ const SearchBar = () => {
 
   const onInputChange = (e) => setInput(e.target.value);
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-
-    // dispatch the submitted input only if the input matches one of the fetched cities
-    if (cities.find((city) => city === selectionInput))
-      dispatch(searchSubmitted(selectionInput));
-    if (cities.find((city) => city === input)) dispatch(searchSubmitted(input));
-
-    setInput("");
-  };
-
   const fetchCities = async () => {
     try {
       let fetchRes = await fetch("/cityList", { method: "GET" });
@@ -36,6 +25,18 @@ const SearchBar = () => {
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    // dispatch the submitted input only if the input matches one of the fetched cities
+    // selected input from dropdown & complete input
+    if (cities.find((city) => city === selectionInput))
+      dispatch(searchSubmitted(selectionInput));
+    if (cities.find((city) => city === input)) dispatch(searchSubmitted(input));
+
+    setInput("");
   };
 
   useEffect(() => {

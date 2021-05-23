@@ -35,21 +35,17 @@ export const POI = ({ addresses }) => {
     iconUrl: "https://cdn3.iconfinder.com/data/icons/map/500/landmark-512.png",
   });
 
-  let attractionsRender = attractions.map((address) => (
-    <Marker position={address[1]} key={address[0]} icon={attractionIcon}>
-      <Popup>{address[0]}</Popup>
-    </Marker>
-  ));
-  let restaurantsRender = restaurants.map((address) => (
-    <Marker position={address[1]} key={address[0]} icon={restaurantIcon}>
-      <Popup>{address[0]}</Popup>
-    </Marker>
-  ));
-  let hotelsRender = hotels.map((address) => (
-    <Marker position={address[1]} key={address[0]} icon={hotelIcon}>
-      <Popup>{address[0]}</Popup>
-    </Marker>
-  ));
+  const renderMarkers = (addresses, icon) => {
+    return addresses.map((address) => (
+      <Marker position={address[1]} key={address[0]} icon={icon}>
+        <Popup>{address[0]}</Popup>
+      </Marker>
+    ));
+  };
+
+  let attractionsRender = renderMarkers(attractions, attractionIcon);
+  let restaurantsRender = renderMarkers(restaurants, restaurantIcon);
+  let hotelsRender = renderMarkers(hotels, hotelIcon);
 
   return (
     <div>
