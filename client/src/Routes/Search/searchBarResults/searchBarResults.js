@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./searchBarResults.css";
 
@@ -17,10 +17,6 @@ const SearchBarResults = () => {
   let attractionsRef = useRef();
   let restaurantsRef = useRef();
   let hotelsRef = useRef();
-
-  const [attractions, setAttractions] = useState([]);
-  const [restaurants, setRestaurants] = useState([]);
-  const [hotels, setHotels] = useState([]);
 
   const onAddressClick = (e) => {
     dispatch(addressSelected(e.target.textContent));
@@ -62,23 +58,21 @@ const SearchBarResults = () => {
 
   // check for 'undefined' Redux state
   if (
-    attractions !== undefined &&
-    restaurants !== undefined &&
-    hotels !== undefined
+    addresses["attractions"][0] !== undefined &&
+    addresses["restaurants"][0] !== undefined &&
+    addresses["hotels"][0] !== undefined
   ) {
-    attractionsRender = renderHandler(attractions, "address_attractions");
-    restaurantsRender = renderHandler(restaurants, "address_restaurants");
-    hotelsRender = renderHandler(hotels, "address_hotels");
+    attractionsRender = renderHandler(
+      addresses["attractions"][0],
+      "address_attractions"
+    );
+    restaurantsRender = renderHandler(
+      addresses["restaurants"][0],
+      "address_restaurants"
+    );
+    hotelsRender = renderHandler(addresses["hotels"][0], "address_hotels");
   }
-
-  // set addresses based on Redux address states
-  useEffect(() => {
-    if (addresses !== undefined) {
-      setAttractions(addresses["attractions"][0]);
-      setRestaurants(addresses["restaurants"][0]);
-      setHotels(addresses["hotels"][0]);
-    }
-  }, [addresses]);
+  console.log(addresses);
 
   return (
     <div className="searchBarResults">

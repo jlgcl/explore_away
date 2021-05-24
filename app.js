@@ -1,10 +1,7 @@
 const express = require("express");
-//const http_errors = require("http-errors");
 const cookie_parser = require("cookie-parser");
-//const router = express.Router();
 const session = require("express-session");
 const cors = require("cors");
-//const path = require("path");
 const passport = require("passport");
 
 const login = require("./routes/login");

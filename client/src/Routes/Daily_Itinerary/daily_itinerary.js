@@ -125,7 +125,9 @@ const DailyItinerary = () => {
         onFetchItinerary();
       } catch (err) {
         alert("You must be logged in");
-        window.location.href = "/";
+        setTimeout(function () {
+          window.location.href = "/";
+        }, 1000);
       }
     };
     fetchUser();
