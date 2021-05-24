@@ -33,15 +33,15 @@ export const Instagram = () => {
       fetchJson["instaPosts"][0].forEach((data) => {
         let newImgUrl = data["imgSrc"]
           .replace(
-            "https://instagram.fyto1-3.fna.fbcdn.net/",
+            "https://instagram.fyzd1-3.fna.fbcdn.net/",
             "https://worker.lee-james-eng.workers.dev/https://scontent-arn2-1.cdninstagram.com/"
           )
           .replace(
-            "https://instagram.fyto1-2.fna.fbcdn.net/",
+            "https://instagram.fyzd1-2.fna.fbcdn.net/",
             "https://worker.lee-james-eng.workers.dev/https://scontent-arn2-1.cdninstagram.com/"
           )
           .replace(
-            "https://instagram.fyto1-1.fna.fbcdn.net/",
+            "https://instagram.fyzd1-1.fna.fbcdn.net/",
             "https://worker.lee-james-eng.workers.dev/https://scontent-arn2-1.cdninstagram.com/"
           );
         setPostImg((current) => [...current, newImgUrl]);

@@ -25,7 +25,7 @@
 .searchBarResults {
   margin-top: 25px;
   background-color: rgb(245, 255, 255);
-  height: 82vh;
+  height: 78vh;
   display: block;
   overflow-y: scroll;
   z-index: -1;

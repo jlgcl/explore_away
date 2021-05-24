@@ -35,26 +35,25 @@ passport.use(
 );
 
 // Use for user list & profiles
-passport.use(
-  new JWTStrategy(
-    {
-      jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
-      secretOrKey: process.env.SECRET_KEY,
-    },
-    (jwtPayload, cb) => {
-      const user = pool.query("SELECT * FROM users WHERE user_id=$1", [
-        jwtPayload.sub,
-      ]);
+// passport.use(
+//   new JWTStrategy(
+//     {
+//       jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
+//       secretOrKey: process.env.SECRET_KEY,
+//     },
+//     (jwtPayload, cb) => {
+//       const user = pool.query("SELECT * FROM users WHERE user_id=$1", [
+//         jwtPayload.sub,
+//       ]);
 
-      if (user) return cb(null, user);
-      else if (err) {
-        return cb(err, false);
-      } else return cb(null, false);
-    }
-  )
-);
+//       if (user) return cb(null, user);
+//       else if (err) {
+//         return cb(err, false);
+//       } else return cb(null, false);
+//     }
+//   )
+// );
 
-// 'user' belongs to session, not db
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });

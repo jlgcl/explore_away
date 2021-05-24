@@ -37,7 +37,6 @@ export const ItineraryAdd = () => {
     async (e) => {
       e.preventDefault();
 
-      findAddressType();
       let data = {
         username: user,
         address: address,
@@ -56,7 +55,7 @@ export const ItineraryAdd = () => {
       let fetchJson = await fetchRes.json();
       alert(fetchJson);
     },
-    [address, city, date.v, addressType, findAddressType, user]
+    [address, city, date.v, addressType, user]
   );
 
   const handleRenderContent = useCallback(() => {
@@ -77,6 +76,10 @@ export const ItineraryAdd = () => {
       );
     }
   }, [onAddItinerary, user]);
+
+  useEffect(() => {
+    if (addresses !== undefined && address !== undefined) findAddressType();
+  }, [addresses, address, findAddressType]);
 
   useEffect(() => {
     const fetchUser = async () => {
