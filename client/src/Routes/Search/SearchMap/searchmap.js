@@ -26,6 +26,7 @@ const SearchMap = ({ setLoading }) => {
   const centerAddress = useSelector(addressName);
   const dispatch = useDispatch();
 
+  // fetch coordinates & addresses
   const memoFetchCoordinate = useCallback(async () => {
     setLoading(true);
     try {
@@ -52,6 +53,7 @@ const SearchMap = ({ setLoading }) => {
     }
   }, [searchInput, dispatch, setLoading]);
 
+  // when individual address is clicked, update center position
   const memoCenterPos = useCallback(() => {
     const handleCenterPos = (coordinates) => {
       let findPosition = coordinates.filter(

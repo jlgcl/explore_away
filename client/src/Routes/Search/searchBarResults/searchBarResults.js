@@ -72,7 +72,6 @@ const SearchBarResults = () => {
     );
     hotelsRender = renderHandler(addresses["hotels"][0], "address_hotels");
   }
-  console.log(addresses);
 
   return (
     <div className="searchBarResults">

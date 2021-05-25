@@ -10,6 +10,7 @@ import { SearchLoading } from "./Loading/searchLoading";
 const Search = () => {
   const [loading, setLoading] = useState(false);
   const loadingRef = useRef();
+  const searcherRef = useRef();
 
   useEffect(() => {
     if (loading === false) loadingRef.current.style.display = "none";
@@ -21,8 +22,8 @@ const Search = () => {
       <div className="SearchLoading" ref={loadingRef}>
         <SearchLoading />
       </div>
-      <div className="Searcher">
-        <Searcher />
+      <div className="Searcher" ref={searcherRef}>
+        <Searcher searcherRef={searcherRef} />
       </div>
       <div className="SearchMap">
         <SearchMap setLoading={setLoading} />

@@ -20,7 +20,7 @@ export const SocialScrape = () => {
 
   let dispatch = useDispatch();
 
-  let clickStatus = useSelector(addressClickStatus);
+  let clickStatus = useSelector(addressClickStatus); // checks to open/close the window
 
   // Show/hide social media page by which is clicked & activate/deactivate tab
   const onTabClick = (e) => {

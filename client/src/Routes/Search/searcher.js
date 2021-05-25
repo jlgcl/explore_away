@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SearchBar from "./searchbar";
 
-const Searcher = () => {
+const Searcher = ({ searcherRef }) => {
   const [showSearch, setShowSearch] = useState(true);
 
   let toggleArrow;
@@ -15,12 +15,12 @@ const Searcher = () => {
   const handleToggle = (e) => {
     if (showSearch === true) {
       setShowSearch(false);
-      document.querySelector(".Searcher").style.left = "-25vw";
-      document.querySelector(".Searcher").style.transition = "left 0.3s";
+      searcherRef.current.style.left = "-25vw";
+      searcherRef.current.style.transition = "left 0.3s";
     } else {
       setShowSearch(true);
-      document.querySelector(".Searcher").style.left = "0";
-      document.querySelector(".Searcher").style.transition = "left 0.3s";
+      searcherRef.current.style.left = "0";
+      searcherRef.current.style.transition = "left 0.3s";
     }
   };
 

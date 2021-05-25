@@ -19,11 +19,7 @@ const Navbar = () => {
   const handleScroll = () => {
     var currentScrollPos = window.pageYOffset; // obtain current y-offset
     // visible cut-off per Navbar height
-    setVisible(
-      (currentScrollPos > prevScrollPos &&
-        currentScrollPos - prevScrollPos > 60) ||
-        currentScrollPos > 10
-    );
+    setVisible(currentScrollPos > 10);
     setPrevScrollPos(currentScrollPos);
   };
 

@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import "./searchbar.css";
-
-import { searchSubmitted } from "./searchSlice";
 import { DropDown } from "./DropDown/dropDown";
 import SearchBarResults from "./searchBarResults/searchBarResults";
-
 import backArrow from "../../Assets/backarrow.png";
+
+import { searchSubmitted } from "./searchSlice";
 
 const SearchBar = () => {
   const [input, setInput] = useState("");
   const [cities, setCities] = useState([]);
   const [selectionInput, setSelectionInput] = useState("");
+
+  const searchInputRef = useRef();
 
   const dispatch = useDispatch();
 
@@ -45,7 +46,7 @@ const SearchBar = () => {
 
   // change input field value to the dropdown selection
   useEffect(() => {
-    document.querySelector(".Search_Input").value = selectionInput;
+    searchInputRef.current.value = selectionInput;
   }, [selectionInput]);
 
   return (
@@ -60,6 +61,7 @@ const SearchBar = () => {
             placeholder="Enter Travel Destination"
             type="text"
             onChange={onInputChange}
+            ref={searchInputRef}
           ></input>
           <DropDown
             cities={cities}
